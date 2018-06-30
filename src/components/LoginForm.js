@@ -63,7 +63,7 @@ class LoginForm extends Component {
 					<Input
 						secureTextEntry
 						label="Password"
-						placeholder"password"
+						placeholder="password"
 						onChangeText={this.onPasswordChange.bind(this)}
 						value={this.props.password}
 					/>
@@ -91,7 +91,7 @@ const styles = {
 
 const mapStateToProps = ({ auth }) => {
 	const { email, password, error, loading } = auth;
-	return { email, password, error, loading);
+	return { email, password, error, loading};
 };
 
 

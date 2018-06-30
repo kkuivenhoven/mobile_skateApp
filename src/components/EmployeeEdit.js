@@ -6,6 +6,7 @@ import EmployeeForm from './EmployeeForm';
 import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 
+
 class EmployeeEdit extends Component {
 	state = {showModal: false };
 
@@ -18,6 +19,12 @@ class EmployeeEdit extends Component {
 
 	onButtonPress(){
 		const { name, phone, shift } = this.props;
+		this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
+	}
+
+
+	onTextPress(){
+		const { phone, shift } = this.props;
 		Communications.text(phone, `Your upcoming shift is on ${shift}`);
 	}
 

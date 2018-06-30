@@ -29,7 +29,7 @@ const styles = {
 		fontWeight: '600',
 		paddingTop: 10,
 		paddingBottom: 10,
-	}
+	},
 	buttonStyle: {
 		flex: 1,
 		alignSelf: 'stretch',

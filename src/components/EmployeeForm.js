@@ -21,7 +21,7 @@ class EmployeeForm extends Component {
 				<CardSection>
 					<Input
 						label="Phone"
-						placeholder-"555-555-5555"
+						placeholder="555-555-5555"
 						value={this.props.phone}
 						onChangeText={value => this.props.employeeUpdate({ prop: 'phone', value })}
 					/>
@@ -41,7 +41,7 @@ class EmployeeForm extends Component {
 						<Picker.Item label="Thursday" value="Thursday" />
 						<Picker.Item label="Friday" value="Friday" />
 						<Picker.Item label="Saturday" value="Saturday" />
-						<Picker.Item label="Sunday" value="Sunday />
+						<Picker.Item label="Sunday" value="Sunday" />
 					</Picker>
 				</CardSection>
 
