@@ -7,9 +7,9 @@ import EmployeeForm from './EmployeeForm';
 class EmployeeCreate extends Component {
 	onButtonPress(){
 		//const { name, phone, shift } = this.props;
-		const { name, zip, ab_state } = this.props;
+		const { name, addr_num, street, city, zip, ab_state, country } = this.props;
 		//this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
-		this.props.employeeCreate({ name, zip, ab_state: ab_state || 'CA' });
+		this.props.employeeCreate({ name, addr_num, street, city, zip, ab_state: ab_state || 'CA', country });
 	}
 
 	render() {
@@ -38,10 +38,10 @@ const styles = {
 
 const mapStateToProps = (state) => {
 	//const { name, phone, shift } = state.employeeForm;
-	const { name, zip, ab_state } = state.employeeForm;
+	const { name, addr_num, street, city, zip, ab_state, country } = state.employeeForm;
 
 	//return { name, phone, shift };
-	return { name, zip, ab_state };
+	return { name, addr_num, street, city, zip, ab_state, country };
 };
 
 

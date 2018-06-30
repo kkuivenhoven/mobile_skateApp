@@ -19,9 +19,9 @@ class EmployeeEdit extends Component {
 
 	onButtonPress(){
 		//const { name, phone, shift } = this.props;
-		const { name, zip, ab_state } = this.props;
+		const { name, addr_num, street, city, zip, ab_state, country } = this.props;
 		//this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
-		this.props.employeeSave({ name, zip, ab_state, uid: this.props.employee.uid });
+		this.props.employeeSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid });
 	}
 
 
@@ -80,9 +80,9 @@ class EmployeeEdit extends Component {
 
 const mapStateToProps = (state) => {
 	//const { name, phone, shift } = state.employeeForm;
-	const { name, zip, ab_state } = state.employeeForm;
+	const { name, addr_num, street, city, zip, ab_state, country } = state.employeeForm;
 	//return { name, phone, shift };
-	return { name, zip, ab_state };
+	return { name, addr_num, street, city, zip, ab_state, country };
 };
 
 

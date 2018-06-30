@@ -6,6 +6,8 @@ import {
 
 const INITIAL_STATE = {
 	name: '',
+	street: '',
+	city: '',
 	zip: '',
 	ab_state: ''
 };

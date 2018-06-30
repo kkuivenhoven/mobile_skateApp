@@ -19,6 +19,33 @@ class EmployeeForm extends Component {
 				</CardSection>
 
 				<CardSection>
+					<Input
+						label="Address Num:"
+						placeholder="282"
+						value={this.props.addr_num}
+						onChangeText={value => this.props.employeeUpdate({ prop: 'addr_num', value })}
+					/>
+				</CardSection>
+
+				<CardSection>
+					<Input
+						label="Street"
+						placeholder="E 8th St"
+						value={this.props.street}
+						onChangeText={value => this.props.employeeUpdate({ prop: 'street', value })}
+					/>
+				</CardSection>
+
+				<CardSection>
+					<Input
+						label="City"
+						placeholder="Chico"
+						value={this.props.city}
+						onChangeText={value => this.props.employeeUpdate({ prop: 'city', value })}
+					/>
+				</CardSection>
+
+				<CardSection>
 					<Zip
 						label="Zip"
 						placeholder="95928"
@@ -94,6 +121,15 @@ class EmployeeForm extends Component {
 						<Picker.Item label="WY" value="WY" />
 
 					</Picker>
+				</CardSection>
+
+				<CardSection>
+					<Input
+						label="Country"
+						placeholder="USA"
+						value={this.props.country}
+						onChangeText={value => this.props.employeeUpdate({ prop: 'country', value })}
+					/>
 				</CardSection>
 
 			</View>
