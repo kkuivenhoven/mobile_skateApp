@@ -18,14 +18,18 @@ class EmployeeEdit extends Component {
 
 
 	onButtonPress(){
-		const { name, phone, shift } = this.props;
-		this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
+		//const { name, phone, shift } = this.props;
+		const { name, zip, ab_state } = this.props;
+		//this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
+		this.props.employeeSave({ name, zip, ab_state, uid: this.props.employee.uid });
 	}
 
 
 	onTextPress(){
-		const { phone, shift } = this.props;
-		Communications.text(phone, `Your upcoming shift is on ${shift}`);
+		//const { phone, shift } = this.props;
+		const { zip, ab_state } = this.props;
+		//Communications.text(phone, `Your upcoming shift is on ${shift}`);
+		Communications.text(zip, `Your upcoming ab_state is on ${ab_state}`);
 	}
 
 
@@ -75,8 +79,10 @@ class EmployeeEdit extends Component {
 
 
 const mapStateToProps = (state) => {
-	const { name, phone, shift } = state.employeeForm;
-	return { name, phone, shift };
+	//const { name, phone, shift } = state.employeeForm;
+	const { name, zip, ab_state } = state.employeeForm;
+	//return { name, phone, shift };
+	return { name, zip, ab_state };
 };
 
 

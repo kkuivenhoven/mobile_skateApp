@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
 import { employeeUpdate, employeeCreate } from '../actions';
-import { Card, CardSection, Button, Input } from './common';
+import { Card, CardSection, Button, Input, Zip } from './common';
 
 
 class EmployeeForm extends Component {
@@ -19,29 +19,80 @@ class EmployeeForm extends Component {
 				</CardSection>
 
 				<CardSection>
-					<Input
-						label="Phone"
-						placeholder="555-555-5555"
-						value={this.props.phone}
-						onChangeText={value => this.props.employeeUpdate({ prop: 'phone', value })}
+					<Zip
+						label="Zip"
+						placeholder="95928"
+						value={this.props.zip}
+						onChangeText={value => this.props.employeeUpdate({ prop: 'zip', value })}
 					/>
 				</CardSection>
 
 
 				<CardSection style={{ flexDirection: 'column' }}>
-					<Text style={styles.pickerTextStyle}>Shift</Text>
+					<Text style={styles.pickerTextStyle}>State</Text>
 					<Picker
 						style={{ flex: 1 }}
-						selectedValue={this.props.shift}
-						onValueChange={value => this.props.employeeUpdate({ prop: 'shift', value })}
+						selectedValue={this.props.ab_state}
+						onValueChange={value => this.props.employeeUpdate({ prop: 'ab_state', value })}
 					>
-						<Picker.Item label="Monday" value="Monday" />
-						<Picker.Item label="Tuesday" value="Tuesday" />
-						<Picker.Item label="Wednesday" value="Wednesday" />
-						<Picker.Item label="Thursday" value="Thursday" />
-						<Picker.Item label="Friday" value="Friday" />
-						<Picker.Item label="Saturday" value="Saturday" />
-						<Picker.Item label="Sunday" value="Sunday" />
+						<Picker.Item label="AL" value="AL" />
+						<Picker.Item label="AK" value="AK" />
+						<Picker.Item label="AZ" value="AZ" />
+						<Picker.Item label="AR" value="AR" />
+						<Picker.Item label="CA" value="CA" />
+						<Picker.Item label="CO" value="CO" />
+						<Picker.Item label="CT" value="CT" />
+						<Picker.Item label="DE" value="DE" />
+						<Picker.Item label="FL" value="FL" />
+
+						<Picker.Item label="GA" value="GA" />
+						<Picker.Item label="HI" value="HI" />
+						<Picker.Item label="ID" value="ID" />
+						<Picker.Item label="IL" value="IL" />
+						<Picker.Item label="IN" value="IN" />
+						<Picker.Item label="IA" value="IA" />
+						<Picker.Item label="KS" value="KS" />
+						<Picker.Item label="KY" value="KY" />
+						<Picker.Item label="LA" value="LA" />
+
+						<Picker.Item label="ME" value="ME" />
+						<Picker.Item label="MD" value="MD" />
+						<Picker.Item label="MA" value="MA" />
+						<Picker.Item label="MI" value="MI" />
+						<Picker.Item label="MN" value="MN" />
+						<Picker.Item label="MS" value="MS" />
+						<Picker.Item label="MO" value="MO" />
+						<Picker.Item label="MT" value="MT" />
+
+						<Picker.Item label="NE" value="NE" />
+						<Picker.Item label="NV" value="NV" />
+						<Picker.Item label="NH" value="NH" />
+						<Picker.Item label="NJ" value="NJ" />
+						<Picker.Item label="NM" value="NM" />
+						<Picker.Item label="NY" value="NY" />
+						<Picker.Item label="NC" value="NC" />
+						<Picker.Item label="ND" value="ND" />
+						<Picker.Item label="OH" value="OH" />
+
+						<Picker.Item label="OK" value="OK" />
+						<Picker.Item label="OR" value="OR" />
+						<Picker.Item label="PA" value="PA" />
+						<Picker.Item label="PR" value="PR" />
+						<Picker.Item label="RI" value="RI" />
+						<Picker.Item label="SC" value="SC" />
+						<Picker.Item label="SD" value="SD" />
+						<Picker.Item label="TN" value="TN" />
+						<Picker.Item label="UT" value="UT" />
+
+						<Picker.Item label="VT" value="VT" />
+						<Picker.Item label="VA" value="VA" />
+						<Picker.Item label="VI" value="VI" />
+						<Picker.Item label="WA" value="WA" />
+
+						<Picker.Item label="WV" value="WV" />
+						<Picker.Item label="WI" value="WI" />
+						<Picker.Item label="WY" value="WY" />
+
 					</Picker>
 				</CardSection>
 
@@ -62,9 +113,9 @@ const styles = {
 
 
 const mapStateToProps = (state) => {
-	const { name, phone, shift } = state.employeeForm;
+	const { name, zip, ab_state } = state.employeeForm;
 
-	return { name, phone, shift };
+	return { name, zip, ab_state };
 };
 
 

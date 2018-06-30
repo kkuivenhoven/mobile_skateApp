@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser } from '../actions';
+import { emailChanged, passwordChanged, loginUser, signupUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 
@@ -17,6 +17,12 @@ class LoginForm extends Component {
 	onButtonPress(text){
 		const { email, password } = this.props;
 		this.props.loginUser({ email, password });
+	}
+
+	onButtonPressSU(text){
+		const { email, password } = this.props;
+		console.log(this.props.signupUser());
+		this.props.signupUser({ email, password });
 	}
 
 
@@ -37,10 +43,22 @@ class LoginForm extends Component {
 		if(this.props.loading){
 			return <Spinner size="large" />;
 		}
-
 		return (
 			<Button onPress={this.onButtonPress.bind(this)}>
 				Login
+			</Button>
+		);
+	}
+
+	renderSignUpButton(){
+		if(this.props.loading){
+			return <Spinner size="large" />;
+		}
+		console.log("FIRST: read this:");
+		console.log(this.onButtonPressSU.bind(this));
+		return (
+			<Button onPress={this.onButtonPressSU.bind(this)}>
+				Sign Up
 			</Button>
 		);
 	}
@@ -70,10 +88,11 @@ class LoginForm extends Component {
 				</CardSection>
 
 				{this.renderError()}
-
+	
 				<CardSection>
 					{this.renderButton()}
 				</CardSection>
+
 			</Card>
 		);
 	}
