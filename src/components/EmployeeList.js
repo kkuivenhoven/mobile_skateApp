@@ -2,7 +2,7 @@ import _ from 'lodash';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
-import { employeesFetch } from '../actions';
+import { employeesFetch, logOutUser } from '../actions';
 import ListItem from './ListItem';
 
 class EmployeeList extends Component {
@@ -23,7 +23,6 @@ class EmployeeList extends Component {
 
 		this.dataSource = ds.cloneWithRows(employees);
 	}
-
 
 
 	renderRow(employee){
@@ -52,4 +51,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
+export default connect(mapStateToProps, { employeesFetch, logOutUser })(EmployeeList);

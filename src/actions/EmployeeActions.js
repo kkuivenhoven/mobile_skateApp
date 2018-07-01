@@ -4,7 +4,8 @@ import {
 	EMPLOYEE_UPDATE,
 	EMPLOYEE_CREATE,
 	EMPLOYEES_FETCH_SUCCESS,
-	EMPLOYEE_SAVE_SUCCESS
+	EMPLOYEE_SAVE_SUCCESS,
+	LOGOUT_USER
 } from './types';
 
 
@@ -61,6 +62,15 @@ export const employeeSave = ({ name, addr_num, street, city, zip, ab_state, coun
 				Actions.main({ type: 'reset' });
 			});
 	};
+};
+
+export const logOutUser = (dispatch, user) => {
+	dispatch({ type: LOGOUT_USER });
+	firebase.auth().signOut()
+		.then(() => {
+			dispatch({ type: LOGOUT_USER });
+			Actions.auth();
+		});
 };
 
 

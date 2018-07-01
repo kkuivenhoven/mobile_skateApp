@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { employeeUpdate, employeeCreate } from '../actions';
+import { employeeUpdate, employeeCreate, logOutUser } from '../actions';
 import { Card, CardSection, Button } from './common';
 import EmployeeForm from './EmployeeForm';
 
@@ -46,7 +46,7 @@ const mapStateToProps = (state) => {
 
 
 export default connect(mapStateToProps, {
-	employeeUpdate, employeeCreate
+	employeeUpdate, employeeCreate, logOutUser
 })(EmployeeCreate);
 
 

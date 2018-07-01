@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeUpdate, employeeCreate } from '../actions';
+import { employeeUpdate, employeeCreate, logOutUser } from '../actions';
 import { Card, CardSection, Button, Input, Zip } from './common';
 
 
@@ -157,4 +157,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeForm);
+export default connect(mapStateToProps, { employeeUpdate, logOutUser })(EmployeeForm);

@@ -27,7 +27,7 @@ const RouterComponent = () => {
 					/>
 
 					<Scene
-						onLeft={() => console.log("log out button")}
+						onLeft={() => console.log("should log user out - not working yet")}
 						leftTitle="Log Out"
 						key="employeeList"
 						component={EmployeeList}
