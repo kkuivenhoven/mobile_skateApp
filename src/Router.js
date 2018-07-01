@@ -34,8 +34,8 @@ const RouterComponent = () => {
 						title="Skate Spots"
 					/>
 
-					<Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" />
-					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Employee" />
+					<Scene key="employeeCreate" component={EmployeeCreate} title="Create Skate Spot" />
+					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 				</Scene>
 
 			</Scene>
