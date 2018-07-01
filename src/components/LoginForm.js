@@ -19,9 +19,8 @@ class LoginForm extends Component {
 		this.props.loginUser({ email, password });
 	}
 
-	onButtonPressSU(text){
+	onButtonSUB(text){
 		const { email, password } = this.props;
-		console.log(this.props.signupUser());
 		this.props.signupUser({ email, password });
 	}
 
@@ -50,14 +49,12 @@ class LoginForm extends Component {
 		);
 	}
 
-	renderSignUpButton(){
+	renderSUB(){
 		if(this.props.loading){
 			return <Spinner size="large" />;
 		}
-		console.log("FIRST: read this:");
-		console.log(this.onButtonPressSU.bind(this));
 		return (
-			<Button onPress={this.onButtonPressSU.bind(this)}>
+			<Button onPress={this.onButtonSUB.bind(this)}>
 				Sign Up
 			</Button>
 		);
@@ -91,7 +88,9 @@ class LoginForm extends Component {
 	
 				<CardSection>
 					{this.renderButton()}
+					{this.renderSUB()}
 				</CardSection>
+
 
 			</Card>
 		);
@@ -115,5 +114,5 @@ const mapStateToProps = ({ auth }) => {
 
 
 export default connect(mapStateToProps, {
-	emailChanged, passwordChanged, loginUser
+	emailChanged, passwordChanged, loginUser, signupUser
 })(LoginForm);
