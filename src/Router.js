@@ -22,7 +22,7 @@ const RouterComponent = () => {
 						rightTitle="Add"
 						key="employeeList"
 						component={EmployeeList}
-						title="Employees"
+						title="Skate Spots"
 						initial
 					/>
 
@@ -31,7 +31,7 @@ const RouterComponent = () => {
 						leftTitle="Log Out"
 						key="employeeList"
 						component={EmployeeList}
-						title="Employees"
+						title="Skate Spots"
 					/>
 
 					<Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" />

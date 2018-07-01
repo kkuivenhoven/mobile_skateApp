@@ -6,10 +6,12 @@ import {
 
 const INITIAL_STATE = {
 	name: '',
+	addr_num: '',
 	street: '',
 	city: '',
 	zip: '',
-	ab_state: ''
+	ab_state: '',
+	country: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

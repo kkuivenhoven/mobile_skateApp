@@ -149,9 +149,9 @@ const styles = {
 
 
 const mapStateToProps = (state) => {
-	const { name, zip, ab_state } = state.employeeForm;
+	const { name, addr_num, street, city, zip, ab_state, country } = state.employeeForm;
 
-	return { name, zip, ab_state };
+	return { name, addr_num, street, city, zip, ab_state, country };
 };
 
 
