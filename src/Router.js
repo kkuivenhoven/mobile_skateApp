@@ -12,7 +12,7 @@ const RouterComponent = () => {
 			<Scene key="root" hideNavBar>
 
 				<Scene key="auth">
-					<Scene key="login" component={LoginForm} title="Please Login" initial />
+					<Scene key="login" component={LoginForm} title="Please Login or Sign Up" initial />
 				</Scene>
 
 
@@ -24,6 +24,14 @@ const RouterComponent = () => {
 						component={EmployeeList}
 						title="Employees"
 						initial
+					/>
+
+					<Scene
+						onLeft={() => console.log("log out button")}
+						leftTitle="Log Out"
+						key="employeeList"
+						component={EmployeeList}
+						title="Employees"
 					/>
 
 					<Scene key="employeeCreate" component={EmployeeCreate} title="Create Employee" />

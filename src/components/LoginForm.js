@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
-import { emailChanged, passwordChanged, loginUser, signupUser } from '../actions';
+import { emailChanged, passwordChanged, loginUser, signupUser, logOutUser } from '../actions';
 import { Card, CardSection, Input, Button, Spinner } from './common';
 
 
@@ -114,5 +114,5 @@ const mapStateToProps = ({ auth }) => {
 
 
 export default connect(mapStateToProps, {
-	emailChanged, passwordChanged, loginUser, signupUser
+	emailChanged, passwordChanged, loginUser, signupUser, logOutUser
 })(LoginForm);
