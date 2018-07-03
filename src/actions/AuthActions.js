@@ -55,11 +55,10 @@ export const loginUser = ({ email, password }) => {
 };
 
 
-const logOutUser = (dispatch, user) => {
-	dispatch({ type: LOGOUT_USER });
-
+/*export const logoutUser = () => {
 	firebase.auth().signOut();
-};
+	Actions.auth();
+};*/
 
 
 const loginUserFail = (dispatch) => {

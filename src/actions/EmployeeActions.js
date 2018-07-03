@@ -4,7 +4,8 @@ import {
 	EMPLOYEE_UPDATE,
 	EMPLOYEE_CREATE,
 	EMPLOYEES_FETCH_SUCCESS,
-	EMPLOYEE_SAVE_SUCCESS
+	EMPLOYEE_SAVE_SUCCESS,
+	LOGOUT_USER
 } from './types';
 
 
@@ -13,6 +14,12 @@ export const employeeUpdate = ({ prop, value }) => {
 		type: EMPLOYEE_UPDATE,
 		payload: { prop, value }
 	};
+};
+
+
+const logoutUser = () => {
+	firebase.auth().signOut();
+	Actions.auth();
 };
 
 
@@ -76,6 +83,5 @@ export const employeeDelete = ({ uid }) => {
 			});
 	};
 };
-
 
 
