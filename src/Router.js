@@ -13,7 +13,7 @@ const RouterComponent = () => {
 			<Scene key="root" hideNavBar>
 
 				<Scene key="auth">
-					<Scene key="login" component={LoginForm} title="Skate App Login/Sign up" initial />
+					<Scene key="login" component={LoginForm} title="Skate App4All" initial />
 				</Scene>
 
 

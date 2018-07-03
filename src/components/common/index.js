@@ -6,4 +6,5 @@ export * from './Input.js';
 export * from './Spinner.js';
 export * from './Confirm.js';
 export * from './Zip.js';
+export * from './HeadingText.js';
 

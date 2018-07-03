@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { emailChanged, passwordChanged, loginUser, signupUser, logOutUser } from '../actions';
-import { Card, CardSection, Input, Button, Spinner } from './common';
+import { HeadingText, Card, CardSection, Input, Button, Spinner } from './common';
 
 
 class LoginForm extends Component {
@@ -64,13 +64,9 @@ class LoginForm extends Component {
 	render(){
 		return (
 			<Card>
-					<CardSection>
-						<View>
-							<Text style={styles.bigBlue}>
-								Skate App 4 All
-							</Text>
-						</View>
-					</CardSection>
+					<HeadingText 
+						title="Login or Sign Up"
+					/>
 
 					<CardSection>
 						<Input
