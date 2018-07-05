@@ -4,7 +4,8 @@ import {
 	LOGIN_USER_SUCCESS,
 	LOGIN_USER_FAIL,
 	LOGIN_USER,
-	SIGNUP_USER
+	SIGNUP_USER,
+	LOGOUT_USER
 } from '../actions/types';
 
 
@@ -21,6 +22,9 @@ export default (state = INITIAL_STATE, action) => {
 	console.log(action);
 
 	switch (action.type) {
+		case LOGOUT_USER:
+			console.log("INSIDE LOGOUT_USER REDUCER");
+			return state;
 		case EMAIL_CHANGED:
 			return { ...state, email: action.payload };
 		case PASSWORD_CHANGED:

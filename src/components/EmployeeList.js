@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
-import { employeesFetch } from '../actions';
+import { employeesFetch, logoutUser } from '../actions';
 import ListItem from './ListItem';
 
 class EmployeeList extends Component {
@@ -53,4 +53,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { employeesFetch })(EmployeeList);
+export default connect(mapStateToProps, { employeesFetch, logoutUser })(EmployeeList);

@@ -7,7 +7,6 @@ import {
 	LOGIN_USER_FAIL,
 	LOGIN_USER,
 	SIGNUP_USER,
-	LOGOUT_USER
 }	from './types';
 
 
@@ -55,9 +54,12 @@ export const loginUser = ({ email, password }) => {
 };
 
 
+//export const logoutUser = (dispach, user) => {
 /*export const logoutUser = () => {
-	firebase.auth().signOut();
-	Actions.auth();
+	console.log("INSIDE logoutUser()");
+	//firebase.auth().signOut();
+	//Actions.auth();
+	//dispatch({ type: LOGOUT_USER });
 };*/
 
 

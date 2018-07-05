@@ -1,6 +1,5 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
-import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
 import LogoutForm from './components/LogoutForm';
 import EmployeeList from './components/EmployeeList';
@@ -30,7 +29,7 @@ const RouterComponent = () => {
 					/>
 
 					<Scene
-						onLeft={() => { firebase.auth().signOut(); Actions.pop(); }}
+						onLeft={() => console.log("Actions: " + Actions.logoutUser())}
 						leftTitle="Log Out"
 						key="employeeList"
 						component={EmployeeList}

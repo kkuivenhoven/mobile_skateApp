@@ -29,13 +29,6 @@ export const employeeUpdate = ({ prop, value }) => {
 };
 
 
-const logoutUser = () => {
-	firebase.auth().signOut();
-	Actions.auth();
-};
-
-
-
 //export const employeeCreate = ({ name, phone, shift }) => {
 export const employeeCreate = ({ name, addr_num, street, city, zip, ab_state, country }) => {
 	const { currentUser } = firebase.auth();
