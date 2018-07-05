@@ -17,11 +17,8 @@ class ListItem extends Component {
 
 	renderDescription(){
 		const { employee, expanded } = this.props;
-		console.log("rD()-> expanded: " + expanded);
-		console.log("rD()-> employee: " + employee);
-		 
+
 		if(expanded){
-			console.log("inside if expanded");
 			return (
 				<CardSection>
 					<Text>
@@ -37,7 +34,7 @@ class ListItem extends Component {
 
 			return (
 				<TouchableWithoutFeedback 
-					onPressIn={() => this.props.selectLibrary(uid)} 
+					onPress={() => this.props.selectLibrary(uid)} 
 					onLongPress={this.onRowPress.bind(this)}
 				>
 					<View>
@@ -63,13 +60,7 @@ const styles = {
 
 
 const mapStateToProps = (state, ownProps) => {
-	//const expanded = state.selectedLibraryId === ownProps.employee.id;
-	//const expanded = state.employee === ownProps.employee.uid;
-	const expanded = state.employees === ownProps.employee.uid;
-	console.log("expanded: " + expanded);
-	console.log("ownProps.employee.uid: " + ownProps.employee.uid);
-	console.log("state.employees: " + state.employees);
-	console.log("state.employees.constructor.name: " + state.employees.constructor.name);
+	const expanded = state.employeeForm[0] === ownProps.employee.uid;
 
 	return { expanded };
 };

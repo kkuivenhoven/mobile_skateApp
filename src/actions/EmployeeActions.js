@@ -10,9 +10,13 @@ import {
 } from './types';
 
 export const selectLibrary = (libraryId) => {
-	return {
-		type: SELECT_LIBRARY,
-		payload: libraryId
+	const { currentUser } = firebase.auth();
+
+	return (dispatch) => {
+		firebase.database().ref(`/users/${currentUser.uid}/employees/${libraryId}`)
+			.on('value', snapshot => {
+				dispatch({ type: SELECT_LIBRARY, payload: [snapshot.key, snapshot.val()] });
+			})
 	};
 };
 
