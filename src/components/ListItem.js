@@ -22,7 +22,8 @@ class ListItem extends Component {
 			return (
 				<CardSection>
 					<Text>
-						{employee.zip}
+						{"	"} {employee.addr_num} {employee.street} {"\n"}
+						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country}
 					</Text>
 				</CardSection>
 			);
