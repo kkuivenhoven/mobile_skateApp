@@ -5,7 +5,7 @@ import Communications from 'react-native-communications';
 import EmployeeForm from './EmployeeForm';
 import { employeeUpdate, employeeSave, employeeDelete } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
-
+import Geocoder from 'react-native-geocoding';
 
 class EmployeeEdit extends Component {
 	state = {showModal: false };
@@ -19,9 +19,15 @@ class EmployeeEdit extends Component {
 
 	onButtonPress(){
 		//const { name, phone, shift } = this.props;
-		const { name, addr_num, street, city, zip, ab_state, country } = this.props;
+		const { name, addr_num, street, city, zip, ab_state, country, lat, lng } = this.props;
 		//this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
-		this.props.employeeSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid });
+      var addr = addr_num + street + ", " + city + ", " + ab_state + ", " + zip;
+      var geo_lat, geo_lng;
+      Geocoder.from(addr).then(json => {
+          geo_lat = json.results[0].geometry.location.lat;
+          geo_lng = json.results[0].geometry.location.lng;
+					this.props.employeeSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng });
+			}).catch(error => console.warn(error));
 	}
 
 

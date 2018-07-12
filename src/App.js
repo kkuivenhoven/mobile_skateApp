@@ -6,11 +6,11 @@ import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import LoginForm from './components/LoginForm';
 import Router from './Router';
-
+import Geocoder from 'react-native-geocoding';
 
 class App extends Component {
 	componentWillMount(){
-			const config = {
+		const config = {
 			apiKey: "AIzaSyBo632mq4TqzMYOWFpWUcwdU1tTO0XR3X8",
 			authDomain: "skatespots-3a8f0.firebaseapp.com",
 			databaseURL: "https://skatespots-3a8f0.firebaseio.com",
@@ -19,6 +19,7 @@ class App extends Component {
 			messagingSenderId: "233353418469"
 		};
 		firebase.initializeApp(config);
+		Geocoder.init('AIzaSyCsXqaRWrJK-PES4e-9vGBJtyuZzyITKNo');
 	}
 
 	render() {

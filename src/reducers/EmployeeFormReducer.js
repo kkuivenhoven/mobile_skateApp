@@ -13,7 +13,9 @@ const INITIAL_STATE = {
 	zip: '',
 	ab_state: '',
 	country: '',
-	uid: ''
+	uid: '',
+	lat: '',
+	lng: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

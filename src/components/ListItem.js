@@ -17,13 +17,15 @@ class ListItem extends Component {
 
 	renderDescription(){
 		const { employee, expanded } = this.props;
+		var addressComponent;
 
 		if(expanded){
 			return (
 				<CardSection>
 					<Text>
 						{"	"} {employee.addr_num} {employee.street} {"\n"}
-						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country}
+						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country} {"\n"}
+						{"	"} {employee.lat}, {employee.lng}
 					</Text>
 				</CardSection>
 			);
