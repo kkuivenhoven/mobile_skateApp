@@ -21,7 +21,7 @@ const RouterComponent = () => {
 
 
 					<Scene
-						onRight={() => Actions.employeeCreate()}
+						onRight={() => Actions.skateSpotCreate()}
 						rightTitle="Add"
 						key="employeeList"
 						component={EmployeeList}
@@ -36,7 +36,7 @@ const RouterComponent = () => {
 						component={EmployeeList}
 					/>
 
-					<Scene key="employeeCreate" component={EmployeeCreate} title="Create Skate Spot" />
+					<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 				</Scene>
 

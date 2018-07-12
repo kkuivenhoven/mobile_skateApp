@@ -3,12 +3,12 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
-import { employeesFetch, logoutUser } from '../actions';
+import { skateSpotsFetch, logoutUser } from '../actions';
 import ListItem from './ListItem';
 
 class EmployeeList extends Component {
 	componentWillMount(){
-		this.props.employeesFetch();
+		this.props.skateSpotsFetch();
 		this.createDataSource(this.props);
 	}
 
@@ -53,4 +53,4 @@ const mapStateToProps = state => {
 
 
 
-export default connect(mapStateToProps, { employeesFetch, logoutUser })(EmployeeList);
+export default connect(mapStateToProps, { skateSpotsFetch, logoutUser })(EmployeeList);

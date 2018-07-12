@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Picker } from 'react-native';
 import { connect } from 'react-redux';
-import { employeeUpdate, employeeCreate, logoutUser } from '../actions';
+import { skateSpotUpdate, skateSpotCreate, logoutUser } from '../actions';
 import { Card, CardSection, Button, Input, Zip } from './common';
 
 
@@ -14,7 +14,7 @@ class EmployeeForm extends Component {
 						label="Name"
 						placeholder="Jane"
 						value={this.props.name}
-						onChangeText={value => this.props.employeeUpdate({ prop: 'name', value })}
+						onChangeText={value => this.props.skateSpotUpdate({ prop: 'name', value })}
 					/>
 				</CardSection>
 
@@ -23,7 +23,7 @@ class EmployeeForm extends Component {
 						label="Address Num:"
 						placeholder="282"
 						value={this.props.addr_num}
-						onChangeText={value => this.props.employeeUpdate({ prop: 'addr_num', value })}
+						onChangeText={value => this.props.skateSpotUpdate({ prop: 'addr_num', value })}
 					/>
 				</CardSection>
 
@@ -32,7 +32,7 @@ class EmployeeForm extends Component {
 						label="Street"
 						placeholder="E 8th St"
 						value={this.props.street}
-						onChangeText={value => this.props.employeeUpdate({ prop: 'street', value })}
+						onChangeText={value => this.props.skateSpotpdate({ prop: 'street', value })}
 					/>
 				</CardSection>
 
@@ -41,7 +41,7 @@ class EmployeeForm extends Component {
 						label="City"
 						placeholder="Chico"
 						value={this.props.city}
-						onChangeText={value => this.props.employeeUpdate({ prop: 'city', value })}
+						onChangeText={value => this.props.skateSpotUpdate({ prop: 'city', value })}
 					/>
 				</CardSection>
 
@@ -50,7 +50,7 @@ class EmployeeForm extends Component {
 						label="Zip"
 						placeholder="95928"
 						value={this.props.zip}
-						onChangeText={value => this.props.employeeUpdate({ prop: 'zip', value })}
+						onChangeText={value => this.props.skateSpotUpdate({ prop: 'zip', value })}
 					/>
 				</CardSection>
 
@@ -60,7 +60,7 @@ class EmployeeForm extends Component {
 					<Picker
 						style={{ flex: 1 }}
 						selectedValue={this.props.ab_state}
-						onValueChange={value => this.props.employeeUpdate({ prop: 'ab_state', value })}
+						onValueChange={value => this.props.skateSpotUpdate({ prop: 'ab_state', value })}
 					>
 						<Picker.Item label="AL" value="AL" />
 						<Picker.Item label="AK" value="AK" />
@@ -128,7 +128,7 @@ class EmployeeForm extends Component {
 						label="Country"
 						placeholder="USA"
 						value={this.props.country}
-						onChangeText={value => this.props.employeeUpdate({ prop: 'country', value })}
+						onChangeText={value => this.props.skateSpotUpdate({ prop: 'country', value })}
 					/>
 				</CardSection>
 
@@ -157,4 +157,4 @@ const mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, { employeeUpdate })(EmployeeForm);
+export default connect(mapStateToProps, { skateSpotUpdate })(EmployeeForm);

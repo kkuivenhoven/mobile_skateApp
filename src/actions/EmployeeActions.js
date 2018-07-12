@@ -21,7 +21,7 @@ export const selectLibrary = (libraryId) => {
 };
 
 
-export const employeeUpdate = ({ prop, value }) => {
+export const skateSpotUpdate = ({ prop, value }) => {
 	return {
 		type: EMPLOYEE_UPDATE,
 		payload: { prop, value }
@@ -29,9 +29,7 @@ export const employeeUpdate = ({ prop, value }) => {
 };
 
 
-//export const employeeCreate = ({ name, phone, shift }) => {
-//export const employeeCreate = ({ name, addr_num, street, city, zip, ab_state, country }) => {
-export const employeeCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng }) => {
+export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng }) => {
 	const { currentUser } = firebase.auth();
 	console.log(currentUser);
 	//console.log(name, phone, shift);
@@ -49,7 +47,7 @@ export const employeeCreate = ({ name, addr_num, street, city, zip, ab_state, co
 };
 
 
-export const employeesFetch = () => {
+export const skateSpotsFetch = () => {
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
@@ -61,9 +59,7 @@ export const employeesFetch = () => {
 };
 
 
-//export const employeeSave = ({ name, phone, shift, uid }) => {
-//export const employeeSave = ({ name, addr_num, street, city, zip, ab_state, country, uid }) => {
-export const employeeSave = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng }) => {
+export const skateSpotSave = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng }) => {
 	const { currentUser } = firebase.auth();
 
 			//.set({ name, phone, shift })
@@ -79,7 +75,7 @@ export const employeeSave = ({ name, addr_num, street, city, zip, ab_state, coun
 
 
 
-export const employeeDelete = ({ uid }) => {
+export const skateSpotDelete = ({ uid }) => {
 	const { currentUser } = firebase.auth();
 
 	return () => {
