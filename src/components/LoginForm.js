@@ -65,7 +65,7 @@ class LoginForm extends Component {
 		return (
 			<Card>
 					<HeadingText 
-						title="Login or Sign Up"
+						title="Login"
 					/>
 
 					<CardSection>
@@ -92,7 +92,6 @@ class LoginForm extends Component {
 		
 					<CardSection>
 						{this.renderButton()}
-						{this.renderSUB()}
 					</CardSection>
 
 			</Card>
