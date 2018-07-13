@@ -8,7 +8,7 @@ import { Button, Card, CardSection } from './common';
 import DoubleClick from 'react-native-double-click';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import MapView from 'react-native-maps';
+import MapView, { Marker } from 'react-native-maps';
 
 class ListItem extends Component {
 	componentWillUpdate(){
@@ -39,7 +39,12 @@ class ListItem extends Component {
 								latitudeDelta: 0.0922,
 								longitudeDelta: 0.0421,
 							}}
-						/>
+						>
+							<Marker
+								coordinate={{latitude: employee.lat, longitude: employee.lng}}
+								title={employee.name}
+							/>
+						</MapView>
 					</CardSection>
 				</View>
 			);
