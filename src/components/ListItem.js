@@ -17,7 +17,6 @@ class ListItem extends Component {
 
 	renderDescription(){
 		const { employee, expanded } = this.props;
-		var addressComponent;
 
 		if(expanded){
 			return (
