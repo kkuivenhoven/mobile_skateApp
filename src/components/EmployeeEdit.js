@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
+import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
 import EmployeeForm from './EmployeeForm';
@@ -51,6 +52,7 @@ class EmployeeEdit extends Component {
 
 	render(){
 		return (
+			<ScrollView>
 			<Card>
 				<EmployeeForm />
 				<CardSection>
@@ -60,14 +62,8 @@ class EmployeeEdit extends Component {
 				</CardSection>
 
 				<CardSection>
-					<Button onPress={this.onTextPress.bind(this)}>
-						Text Schedule
-					</Button>
-				</CardSection>
-
-				<CardSection>
 					<Button onPress={() => this.setState({ showModal: !this.state.showModal })}>
-						Fire Employee
+						Delete Spot
 					</Button>
 				</CardSection>
 			
@@ -79,6 +75,7 @@ class EmployeeEdit extends Component {
 					Are you sure you want to delete this?
 				</Confirm>
 			</Card>
+			</ScrollView>
 		);
 	}
 }
