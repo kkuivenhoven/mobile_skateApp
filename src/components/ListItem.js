@@ -1,3 +1,6 @@
+/* Resources:
+	- https://stackoverflow.com/questions/34625829/change-button-style-on-press-in-react-native
+*/
 import React, { Component } from 'react';
 import { LayoutAnimation, Text, TouchableWithoutFeedback, View } from 'react-native';
 import { Actions } from 'react-native-router-flux';
@@ -44,16 +47,18 @@ class ListItem extends Component {
 	}
 
 	render(){
-		const { uid, name, zip } = this.props.employee;
+		const { uid, name, zip, expanded } = this.props.employee;
+		const { titleStyle, first, second } = styles;
+		console.log(this.props);
 
 			return (
 				<TouchableWithoutFeedback 
-					onPress={() => this.props.selectLibrary(uid)} 
+					onPress={() => this.props.selectLibrary(uid)}
 					onLongPress={this.onRowPress.bind(this)}
 				>
-					<View>
+					<View style={ this.props.expanded ? first : second }>
 						<CardSection>
-							<Text style={styles.titleStyle}>
+							<Text style={titleStyle}>
 									{name}
 							</Text>
 						</CardSection>
@@ -66,6 +71,14 @@ class ListItem extends Component {
 
 
 const styles = {
+	first: {
+	  //backgroundColor: '#a5e5a0',
+		height: 300,
+		flex: 1,
+	},
+	second: {
+    //backgroundColor: '#8cedff',
+	},
 	titleStyle: {
 		fontSize: 18,
 		paddingLeft: 15
@@ -76,6 +89,7 @@ const styles = {
     left: 0,
     right: 0,
     bottom: 0,
+		height: 240,
   },
 };
 

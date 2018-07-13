@@ -32,7 +32,7 @@ class EmployeeForm extends Component {
 						label="Street"
 						placeholder="E 8th St"
 						value={this.props.street}
-						onChangeText={value => this.props.skateSpotpdate({ prop: 'street', value })}
+						onChangeText={value => this.props.skateSpotUpdate({ prop: 'street', value })}
 					/>
 				</CardSection>
 
