@@ -1,10 +1,12 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
+import { Button } from './common';
 import { connect } from 'react-redux';
 import { ListView } from 'react-native';
 import { skateSpotsFetch, logoutUser } from '../actions';
 import ListItem from './ListItem';
+import { Actions } from 'react-native-router-flux';
 
 class EmployeeList extends Component {
 	componentWillMount(){
@@ -33,11 +35,16 @@ class EmployeeList extends Component {
 
 	render(){
 		return (
-			<ListView
-				enableEmptySections
-				dataSource={this.dataSource}
-				renderRow={this.renderRow}
-			/>
+			<View style={{flex:1}}>
+				<ListView
+					enableEmptySections
+					dataSource={this.dataSource}
+					renderRow={this.renderRow}
+				/>
+				<Button onPress={() => {Actions.newPage(); }}>
+					New page
+				</Button>
+			</View>
 		);
 	}
 }

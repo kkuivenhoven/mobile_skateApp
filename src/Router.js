@@ -6,6 +6,7 @@ import LogoutForm from './components/LogoutForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import NewPage from './components/NewPage';
 
 
 const RouterComponent = () => {
@@ -18,7 +19,6 @@ const RouterComponent = () => {
 				</Scene>
 
 				<Scene key="main">
-
 
 					<Scene
 						onRight={() => Actions.skateSpotCreate()}
@@ -35,6 +35,8 @@ const RouterComponent = () => {
 						key="employeeList"
 						component={EmployeeList}
 					/>
+
+					<Scene key="newPage" component={NewPage} title="its a new page" />
 
 					<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
