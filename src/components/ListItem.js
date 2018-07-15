@@ -11,6 +11,7 @@ import * as actions from '../actions';
 import MapView, { Marker } from 'react-native-maps';
 
 class ListItem extends Component {
+
 	componentWillUpdate(){
 		LayoutAnimation.spring();
 	}
@@ -22,13 +23,18 @@ class ListItem extends Component {
 	renderDescription(){
 		const { employee, expanded } = this.props;
 
+		console.log("really really");
+		console.log(this.props);
+		console.log(this.state);
+		console.log(this.state);
+
 		if(expanded){
 			return (
 				<View>
 					<Text>
 						{"	"} {employee.addr_num} {employee.street} {"\n"}
 						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country} {"\n"}
-						{"	"} {employee.lat}, {employee.lng}
+						{"	"} {employee.lat}, {employee.lng} {"\n"}
 					</Text>
 					<CardSection>
 						<MapView

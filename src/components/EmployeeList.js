@@ -9,9 +9,30 @@ import ListItem from './ListItem';
 import { Actions } from 'react-native-router-flux';
 
 class EmployeeList extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      latitude: null,
+      longitude: null,
+      error: null,
+    };
+  }
+
 	componentWillMount(){
 		this.props.skateSpotsFetch();
 		this.createDataSource(this.props);
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+          error: null,
+        });
+      },
+      (error) => this.setState({ error: error.message }),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+    );
 	}
 
 	componentWillReceiveProps(nextProps){
@@ -34,6 +55,12 @@ class EmployeeList extends Component {
 	}
 
 	render(){
+		console.log("inside EL");
+		console.log(this.state);
+		console.log(this.state);
+		console.log(this.state.latitude);
+		console.log(this.state.longitude);
+
 		return (
 			<View style={{flex:1}}>
 				<ListView
@@ -41,6 +68,9 @@ class EmployeeList extends Component {
 					dataSource={this.dataSource}
 					renderRow={this.renderRow}
 				/>
+				<Button onPress={() => {Actions.navigation(); }}>
+					Nav
+				</Button>
 				<Button onPress={() => {Actions.newPage(); }}>
 					New page
 				</Button>
