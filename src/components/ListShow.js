@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import * as actions from '../actions';
 import MapView, { Marker } from 'react-native-maps';
 
-class ListItem extends Component {
+class ListShow extends Component {
 
 	componentWillUpdate(){
 		LayoutAnimation.spring();
@@ -25,11 +25,29 @@ class ListItem extends Component {
 
 		if(expanded){
 			return (
-				<Text>
-					{"	"} {employee.addr_num} {employee.street} {"\n"}
-					{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country} {"\n"}
-					{"	"} {employee.lat}, {employee.lng}
-				</Text>
+				<View>
+					<Text>
+						{"	"} {employee.addr_num} {employee.street} {"\n"}
+						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country} {"\n"}
+						{"	"} {employee.lat}, {employee.lng} {"\n"}
+					</Text>
+					<CardSection>
+						<MapView
+							style={ styles.map }
+							initialRegion={{
+								latitude: employee.lat,
+								longitude: employee.lng,
+								latitudeDelta: 0.0922,
+								longitudeDelta: 0.0421,
+							}}
+						>
+							<Marker
+								coordinate={{latitude: employee.lat, longitude: employee.lng}}
+								title={employee.name}
+							/>
+						</MapView>
+					</CardSection>
+				</View>
 			);
 		}
 	}
@@ -37,6 +55,7 @@ class ListItem extends Component {
 	render(){
 		const { uid, name, zip, expanded } = this.props.employee;
 		const { titleStyle, first, second } = styles;
+		console.log(this.props);
 
 			return (
 				<TouchableWithoutFeedback 
@@ -60,8 +79,8 @@ class ListItem extends Component {
 const styles = {
 	first: {
 	  //backgroundColor: '#a5e5a0',
-		//height: 300,
-		//flex: 1,
+		height: 300,
+		flex: 1,
 	},
 	second: {
     //backgroundColor: '#8cedff',
@@ -88,4 +107,4 @@ const mapStateToProps = (state, ownProps) => {
 };
 
 
-export default connect(mapStateToProps, actions)(ListItem);
+export default connect(mapStateToProps, actions)(ListShow);
