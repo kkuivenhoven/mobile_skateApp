@@ -25,6 +25,7 @@ export const passwordChanged = (text) => {
 };
 
 
+//export const signupUser = ({ email, password }) => {
 export const signupUser = ({ email, password }) => {
 	return (dispatch) => {
 		dispatch({ type: SIGNUP_USER });
@@ -76,7 +77,5 @@ const loginUserSuccess = (dispatch, user) => {
 
 	Actions.main();
 };
-
-
 
 

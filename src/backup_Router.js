@@ -1,10 +1,13 @@
 import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
 import LogoutForm from './components/LogoutForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import NewPage from './components/NewPage';
+import Nav from './components/Nav';
 
 
 const RouterComponent = () => {
@@ -18,9 +21,8 @@ const RouterComponent = () => {
 
 				<Scene key="main">
 
-
 					<Scene
-						onRight={() => Actions.employeeCreate()}
+						onRight={() => Actions.skateSpotCreate()}
 						rightTitle="Add"
 						key="employeeList"
 						component={EmployeeList}
@@ -29,13 +31,16 @@ const RouterComponent = () => {
 					/>
 
 					<Scene
-						onLeft={() => console.log("Actions: " + Actions.logoutUser())}
+						onLeft={() => { firebase.auth().signOut(); Actions.pop(); }}
 						leftTitle="Log Out"
 						key="employeeList"
 						component={EmployeeList}
 					/>
 
-					<Scene key="employeeCreate" component={EmployeeCreate} title="Create Skate Spot" />
+					<Scene key="navigation" component={Nav} title="Navigation" />
+					<Scene key="newPage" component={NewPage} title="its a new page" />
+
+					<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 				</Scene>
 

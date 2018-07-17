@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { View, Text } from 'react-native';
 import { HeadingText, Card, CardSection, Button } from './common';
-
+import { Actions } from 'react-native-router-flux';
+import firebase from 'firebase';
 
 class Navigation extends Component {
   render(){
@@ -12,21 +13,27 @@ class Navigation extends Component {
         />  
 
         <CardSection>
-          <Button>
-            Link 1
-          </Button> 
+          <Button
+						onPress={() => {Actions.skateSpotCreate(); }}
+					>
+						Add Spot	
+					</Button>
         </CardSection>
 
         <CardSection>
-          <Button>
-            Link 2
-          </Button> 
+          <Button
+						onPress={() => {Actions.fetchSkateSpotList(); }}
+					>
+						Skate Spot List
+					</Button>
         </CardSection>
 
         <CardSection>
-          <Button>
-            Link 3
-          </Button> 
+          <Button
+						onPress={() => { firebase.auth().signOut(); Actions.pop(); }}
+					>
+						Log Out
+					</Button>
         </CardSection>
 
       </Card>

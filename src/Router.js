@@ -27,7 +27,6 @@ const RouterComponent = () => {
 						key="employeeList"
 						component={EmployeeList}
 						title="Skate Spots"
-						initial
 					/>
 
 					<Scene
@@ -37,9 +36,10 @@ const RouterComponent = () => {
 						component={EmployeeList}
 					/>
 
-					<Scene key="navigation" component={Nav} title="Navigation" />
+					<Scene key="navigation" component={Nav} title="Navigation" initial />
 					<Scene key="newPage" component={NewPage} title="its a new page" />
 
+					<Scene key="fetchSkateSpotList" component={EmployeeList} title="Skate Spots" />
 					<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 				</Scene>

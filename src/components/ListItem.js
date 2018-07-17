@@ -11,6 +11,27 @@ import * as actions from '../actions';
 import MapView, { Marker } from 'react-native-maps';
 
 class ListItem extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { 
+      latitude: null,
+      longitude: null,
+      error: null,
+    };  
+  }
+
+	componentWillMount(){
+    navigator.geolocation.watchPosition(
+      (position) => {
+          this.setState({
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude,
+            error: null,
+          }); 
+      },  
+    ); 
+	}
 
 	componentWillUpdate(){
 		LayoutAnimation.spring();
@@ -20,9 +41,14 @@ class ListItem extends Component {
 		Actions.employeeEdit({ employee: this.props.employee });
 	}
 
-	renderDescription(){
+	check(){
 		const { employee, expanded } = this.props;
 
+	}
+
+	renderDescription(){
+		const { employee, expanded } = this.props;
+	
 		if(expanded){
 			return (
 				<Text>
@@ -35,8 +61,11 @@ class ListItem extends Component {
 	}
 
 	render(){
-		const { uid, name, zip, expanded } = this.props.employee;
+		const { NE_lat, SW_lat, uid, name, zip, expanded } = this.props.employee;
 		const { titleStyle, first, second } = styles;
+
+		// console.log("NE_lat: " + NE_lat);
+		// console.log("SW_lat: " + SW_lat);
 
 			return (
 				<TouchableWithoutFeedback 

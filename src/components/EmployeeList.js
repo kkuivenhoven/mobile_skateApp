@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import { View, Text, Dimensions } from 'react-native';
 import { CardSection, Button } from './common';
 import { connect } from 'react-redux';
-import { ListView } from 'react-native';
+import { ScrollView, ListView } from 'react-native';
 import { skateSpotsFetch, logoutUser } from '../actions';
 import ListItem from './ListItem';
 import { Actions } from 'react-native-router-flux';
 import MapView, { Marker } from 'react-native-maps';
+import firebase from 'firebase';
 
 class EmployeeList extends Component {
   constructor(props) {
@@ -16,20 +17,22 @@ class EmployeeList extends Component {
     this.state = {
       latitude: null,
       longitude: null,
+      latitudeDelta: null,
+      longitudeDelta: null,
       error: null,
-			markers: []
     };
   }
 
 	componentWillMount(){
 		this.props.skateSpotsFetch();
 		this.createDataSource(this.props);
-
 		navigator.geolocation.watchPosition(
 			(position) => {
 					this.setState({
 						latitude: position.coords.latitude,
 						longitude: position.coords.longitude,
+						longitudeDelta: position.coords.longitudeDelta,
+						latitudeDelta: position.coords.latitudeDelta,
 						error: null,
 					});
 			},
@@ -40,13 +43,49 @@ class EmployeeList extends Component {
 		this.createDataSource(nextProps);
 	}
 
-
 	createDataSource({ employees }){
 		const ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2
 		});
 
 		this.dataSource = ds.cloneWithRows(employees);
+	}
+
+	_getUserCoords(){
+		var userLatLng = [];
+		navigator.geolocation.watchPosition(
+			(position) => {
+					this.setState({
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude,
+						error: null,
+					}, () => {
+						console.log("this.state.latitude: " + this.state.latitude);
+						userLatLng.push({latitude: this.state.latitude, longitude: this.state.longitude});
+						console.log("userLatLng: " + userLatLng);
+						return userLatLng;
+					});
+			},
+		);
+	}
+
+	_getUserRegion(){
+		var userRegion = [];
+		navigator.geolocation.watchPosition(
+			(position) => {
+					this.setState({
+						latitude: position.coords.latitude,
+						longitude: position.coords.longitude,
+						longitudeDelta: position.coords.longitudeDelta,
+						latitudeDelta: position.coords.latitudeDelta,
+						error: null,
+					}, () => {
+						userRegion.push({latitude: this.state.latitude, longitude: this.state.longitude, latitudeDelta: this.state.latitudeDelta, longitudeDelta: this.state.longitudeDelta });
+						console.log("userRegion: " + userRegion);
+						return userRegion;
+					});
+			},
+		);
 	}
 
 	_getCoords(employees){
@@ -80,28 +119,38 @@ class EmployeeList extends Component {
 			longitude: JSON.stringify(this.state.longitude),
 		};
 
+		/*console.log("userCoords: " + userCoords);
+		console.log("userCoords.latitude: " + userCoords.latitude);
+		console.log("userCoords.longitude: " + userCoords.longitude);
+		console.log("coords.latitude: " + coords.latitude);
+		console.log("coords.longitude: " + coords.longitude);
+		console.log("coords: " + coords);*/
+		//console.log("this._getUserCoords(): " + this._getUserCoords());
+
 		return (
 			<View style={{flex:1}}>
-				<CardSection>
-					<ListView
-						enableEmptySections
-						dataSource={this.dataSource}
-						renderRow={this.renderRow}
-					/>
-				</CardSection>
+				<View style={styles.topGrid}>
+					<ScrollView>
+						<ListView
+							enableEmptySections
+							dataSource={this.dataSource}
+							renderRow={this.renderRow}
+						/>
+					</ScrollView>
+				</View>
 				<View style={styles.bottomGrid}>
 					<MapView
 						style={ styles.map }
-						region={{latitude: userCoords.latitude, longitude: userCoords.longitude }}
+						region={ userCoords }
 					>  
 						{this._getCoords(this.props.employees).map(marker => (
 							<Marker
 								coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
 							/>
 						))}
-							<Marker
-								coordinate={ userCoords }
-							/>
+						<Marker
+							coordinate={ this._getUserCoords() }
+						/>
 					</MapView>
 				</View>
 			</View>
@@ -112,6 +161,11 @@ class EmployeeList extends Component {
 const dim = Dimensions.get('screen');
 
 const styles =  {
+	topGrid: {
+		borderRadius: 4,
+		borderWidth: 5,
+		borderColor: '#d6d7da',
+	},
 	bottomGrid: {
 		position: 'absolute',
     left: 0,
@@ -121,11 +175,14 @@ const styles =  {
 	},
   map: {
     position: 'absolute',
+		borderRadius: 4,
+		borderWidth: 5,
+		borderColor: '#d6d7da',
     top: 0,
     left: 0,
     right: 0,
     bottom: 0,
-    height: 240,
+    height: dim.height/2,
   },
 };
 

@@ -14,16 +14,14 @@ const INITIAL_STATE = {
 	password: '',
 	user: null,
 	error: '',
-	loading: false
+	loading: false,
 };
 
 
 export default (state = INITIAL_STATE, action) => {
-	console.log(action);
 
 	switch (action.type) {
 		case LOGOUT_USER:
-			console.log("INSIDE LOGOUT_USER REDUCER");
 			return state;
 		case EMAIL_CHANGED:
 			return { ...state, email: action.payload };

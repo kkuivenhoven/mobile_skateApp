@@ -20,14 +20,17 @@ class EmployeeEdit extends Component {
 
 	onButtonPress(){
 		//const { name, phone, shift } = this.props;
-		const { name, addr_num, street, city, zip, ab_state, country, lat, lng } = this.props;
+		//const { name, addr_num, street, city, zip, ab_state, country, lat, lng } = this.props;
+		const { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat } = this.props;
 		//this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
       var addr = addr_num + street + ", " + city + ", " + ab_state + ", " + zip;
-      var geo_lat, geo_lng;
+      var geo_lat, geo_lng, geo_NE, geo_SW;
       Geocoder.from(addr).then(json => {
           geo_lat = json.results[0].geometry.location.lat;
           geo_lng = json.results[0].geometry.location.lng;
-					this.props.skateSpotSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng });
+					geo_NE = json.results[0].geometry.bounds.northeast;
+					geo_SW = json.results[0].geometry.bounds.southwest;
+					this.props.skateSpotSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE, SW_lat: geo_SW });
 			}).catch(error => console.warn(error));
 	}
 
@@ -83,9 +86,9 @@ class EmployeeEdit extends Component {
 
 const mapStateToProps = (state) => {
 	//const { name, phone, shift } = state.employeeForm;
-	const { name, addr_num, street, city, zip, ab_state, country } = state.employeeForm;
+	const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat } = state.employeeForm;
 	//return { name, phone, shift };
-	return { name, addr_num, street, city, zip, ab_state, country };
+	return { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat };
 };
 
 

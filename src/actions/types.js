@@ -8,6 +8,7 @@ export const SIGNUP_USER = 'signup_user';
 export const LOGOUT_USER = 'logout_user';
 
 export const SELECT_LIBRARY = 'select_library';
+export const GET_LAT_LONG = 'get_lat_long';
 
 export const EMPLOYEE_UPDATE = 'employee_update';
 export const EMPLOYEE_CREATE = 'employee_create';
