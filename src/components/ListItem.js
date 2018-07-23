@@ -1,5 +1,5 @@
 /* Resources:
-	- https://stackoverflow.com/questions/34625829/change-button-style-on-press-in-react-native
+	• https://stackoverflow.com/questions/34625829/change-button-style-on-press-in-react-native
 */
 import React, { Component } from 'react';
 import { LayoutAnimation, Text, TouchableWithoutFeedback, View } from 'react-native';
@@ -43,7 +43,6 @@ class ListItem extends Component {
 
 	check(){
 		const { employee, expanded } = this.props;
-
 	}
 
 	renderDescription(){
@@ -51,11 +50,18 @@ class ListItem extends Component {
 	
 		if(expanded){
 			return (
-				<Text>
-					{"	"} {employee.addr_num} {employee.street} {"\n"}
-					{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country} {"\n"}
-					{"	"} {employee.lat}, {employee.lng}
-				</Text>
+				<View>
+					<Text>
+						{"	"} {employee.addr_num} {employee.street} {"\n"}
+						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country} {"\n"}
+						{"	"} {employee.lat}, {employee.lng}
+					</Text>
+					<Button
+						onPress={() => {Actions.skateSpotShow(); }}
+					>
+						Show
+					</Button>
+				</View>
 			);
 		}
 	}
@@ -63,9 +69,6 @@ class ListItem extends Component {
 	render(){
 		const { NE_lat, SW_lat, uid, name, zip, expanded } = this.props.employee;
 		const { titleStyle, first, second } = styles;
-
-		// console.log("NE_lat: " + NE_lat);
-		// console.log("SW_lat: " + SW_lat);
 
 			return (
 				<TouchableWithoutFeedback 

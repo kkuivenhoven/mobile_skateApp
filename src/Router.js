@@ -8,6 +8,7 @@ import EmployeeCreate from './components/EmployeeCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import NewPage from './components/NewPage';
 import Nav from './components/Nav';
+import ListShow from './components/ListShow';
 
 
 const RouterComponent = () => {
@@ -42,6 +43,7 @@ const RouterComponent = () => {
 					<Scene key="fetchSkateSpotList" component={EmployeeList} title="Skate Spots" />
 					<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
+					<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />
 				</Scene>
 
 			</Scene>

@@ -3,8 +3,10 @@ import { View, Text } from 'react-native';
 import { HeadingText, Card, CardSection, Button } from './common';
 import { Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
+import GeoFencing from 'react-native-geo-fencing';
 
 class Navigation extends Component {
+
   render(){
     return (
       <Card>

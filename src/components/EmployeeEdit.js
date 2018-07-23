@@ -21,16 +21,18 @@ class EmployeeEdit extends Component {
 	onButtonPress(){
 		//const { name, phone, shift } = this.props;
 		//const { name, addr_num, street, city, zip, ab_state, country, lat, lng } = this.props;
-		const { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat } = this.props;
+		const { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng } = this.props;
 		//this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
       var addr = addr_num + street + ", " + city + ", " + ab_state + ", " + zip;
-      var geo_lat, geo_lng, geo_NE, geo_SW;
+      var geo_lat, geo_lng, geo_NE_lat, geo_SW_lat, geo_NE_lng, geo_SW_lng;
       Geocoder.from(addr).then(json => {
           geo_lat = json.results[0].geometry.location.lat;
           geo_lng = json.results[0].geometry.location.lng;
-					geo_NE = json.results[0].geometry.bounds.northeast;
-					geo_SW = json.results[0].geometry.bounds.southwest;
-					this.props.skateSpotSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE, SW_lat: geo_SW });
+					geo_NE_lat = json.results[0].geometry.viewport.northeast.lat;
+					geo_NE_lng = json.results[0].geometry.viewport.northeast.lng;
+					geo_SW_lat = json.results[0].geometry.viewport.southwest.lat;
+					geo_SW_lng = json.results[0].geometry.viewport.southwest.lng;
+					this.props.skateSpotSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng });
 			}).catch(error => console.warn(error));
 	}
 

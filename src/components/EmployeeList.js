@@ -142,15 +142,14 @@ class EmployeeList extends Component {
 					<MapView
 						style={ styles.map }
 						region={ userCoords }
+						zoomEnabled={true}
+						showsUserLocation={true}
 					>  
 						{this._getCoords(this.props.employees).map(marker => (
 							<Marker
 								coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
 							/>
 						))}
-						<Marker
-							coordinate={ this._getUserCoords() }
-						/>
 					</MapView>
 				</View>
 			</View>

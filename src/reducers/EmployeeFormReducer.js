@@ -18,7 +18,9 @@ const INITIAL_STATE = {
 	lat: '',
 	lng: '',
 	NE_lat: '',
-	SW_lat: ''
+	NE_lng: '',
+	SW_lat: '',
+	SW_lng: ''
 };
 
 export default (state = INITIAL_STATE, action) => {

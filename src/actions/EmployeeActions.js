@@ -48,7 +48,7 @@ export const skateSpotUpdate = ({ prop, value }) => {
 };
 
 
-export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat }) => {
+export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng }) => {
 	const { currentUser } = firebase.auth();
 	console.log(currentUser);
 	//console.log(name, phone, shift);
@@ -57,7 +57,7 @@ export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, c
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees`)
-			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat })
+			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_CREATE });
 				Actions.main({ type: 'reset' });
@@ -78,13 +78,13 @@ export const skateSpotsFetch = () => {
 };
 
 
-export const skateSpotSave = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng, NE_lat, SW_lat }) => {
+export const skateSpotSave = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng }) => {
 	const { currentUser } = firebase.auth();
 
 			//.set({ name, phone, shift })
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
-			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat })
+			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
 				Actions.main({ type: 'reset' });
