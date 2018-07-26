@@ -29,7 +29,11 @@ class ListShow extends Component {
 			lapTimer: null,
 			mainTimerStart: null,
 			lapTimerStart: null,
+			userLat: null,
+			userLng: null,
+			error: null,
 		};
+
 	}
 
 	// with only point and polygon
@@ -41,27 +45,28 @@ class ListShow extends Component {
 			{ lat: this.props.employee[1].NE_lat, lng: this.props.employee[1].SW_lng },
 			{ lat: this.props.employee[1].NE_lat, lng: this.props.employee[1].NE_lng },
 		];
-	 
+
 		const point = {
 			lat: this.props.employee[1].lat,
 			lng: this.props.employee[1].lng,
 		};
+
+		//console.log("goAway: " + goAway);
+		//console.log("Object.keys(goAway): " + Object.keys(goAway));
+		//console.log("Object.values(goAway): " + Object.values(goAway));
+		console.log("this.state.userLat: " + this.state.userLat);
+		console.log("this.state.userLng: " + this.state.userLng);
 	 
+		//GeoFencing.containsLocation(goAway, polygon)
 		GeoFencing.containsLocation(point, polygon)
-			.then(() => {this.setState({inFence: true,});})
+			.then(() => console.log('point is within polygon'))
 			.catch(() => console.log('point is NOT within polygon'))
+			//.then(() => {this.setState({inFence: true,});})
+			//.catch(() => {this.setState({inFence: false,});})
 			//.then(() => console.log('point is within polygon'))
 			//.catch(() => console.log('point is NOT within polygon'))
-	}
 
-	/*_getCoords(){
-		var latLng = [];
-		latLng.push({latitude: this.props.employee[1].NE_lat, longitude: this.props.employee[1].NE_lng});
-		latLng.push({latitude: this.props.employee[1].SW_lat, longitude: this.props.employee[1].SW_lng});
-		latLng.push({latitude: this.props.employee[1].NE_lat, longitude: this.props.employee[1].SW_lng});
-		latLng.push({latitude: this.props.employee[1].SW_lat, longitude: this.props.employee[1].NE_lng});
-		return latLng;
-	}*/
+	}
 
 	getRadius(){
 		var diff;
@@ -70,6 +75,45 @@ class ListShow extends Component {
 		return diff;
 	}
 
+	checkLocation(){
+		console.log(" IN SIDE CHECK LOCATION FUNCTION ");
+		const polygon = [
+			{ lat: this.props.employee[1].NE_lat, lng: this.props.employee[1].NE_lng },
+			{ lat: this.props.employee[1].SW_lat, lng: this.props.employee[1].NE_lng },
+			{ lat: this.props.employee[1].SW_lat, lng: this.props.employee[1].SW_lng },
+			{ lat: this.props.employee[1].NE_lat, lng: this.props.employee[1].SW_lng },
+			{ lat: this.props.employee[1].NE_lat, lng: this.props.employee[1].NE_lng },
+		];
+		var goAway = [];
+    /*navigator.geolocation.watchPosition(
+      (position) => {
+          this.setState({
+            userLat: position.coords.latitude,
+            userLng: position.coords.longitude,
+            error: null,
+          }, () => {
+						console.log("this.state.latitude: " + this.state.userLat);
+            goAway.push({lat: this.state.userLat, lng: this.state.userLng});
+          }); 
+      },  
+    );*/ 
+		navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          userLat: position.coords.latitude,
+          userLng: position.coords.longitude,
+          error: null,
+        }, () => {
+					goAway.push({lat: this.state.userLat, lng: this.state.userLng});
+					GeoFencing.containsLocation(goAway[0], polygon)
+						.then(() => {this.setState({inFence: true,});})
+						.catch(() => {this.setState({inFence: false,});})
+				});
+      },
+      (error) => console.log("error: " + error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
+    );
+	}
 
 
   handleStartStop(){
@@ -129,7 +173,18 @@ class ListShow extends Component {
     return (
       <View style={styles.buttonWrapper}>
         <TouchableHighlight onPress={this.handleStartStop.bind(this)} style={styles.button}>
-          <Text>Start</Text>
+          <Text>{ this.state.isRunning? 'Stop' : 'Start' }</Text>
+        </TouchableHighlight>
+      </View>
+    );
+  }
+
+
+  _timerButton(){
+    return (
+      <View style={styles.buttonWrapper}>
+        <TouchableHighlight onPress={this.handleStartStop.bind(this)} style={styles.button}>
+          <Text>{ this.state.isRunning? 'Stop' : 'Start' }</Text>
         </TouchableHighlight>
       </View>
     );
@@ -155,7 +210,10 @@ class ListShow extends Component {
 
 
 	startTimer(){
-		if(this.state.clicked == true){
+		//if(this.state.clicked == true){
+		if(this.state.inFence == true){
+			console.log("startTimer():");
+			console.log("this.state.inFence: " + this.state.inFence);
 				//<StopWatch/>
 			return (
 				<Card>
@@ -181,8 +239,8 @@ class ListShow extends Component {
 							{"  "} {employee[1].city}, {employee[1].ab_state} {employee[1].zip} {employee[1].country} {"\n"}
 							{"  "} {employee[1].userTime}
 						</Text>
-						<Button onPress={() => this.inFenceCheck()}>
-							Check In
+						<Button onPress={() => this.checkLocation()}>
+							Check Location
 						</Button>
 					</CardSection>
 
@@ -312,6 +370,9 @@ const mapStateToProps = (state) => {
   //const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat } = state.employeeForm;
   //return { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat };
   //const { employee } = state.employeeForm;
+	console.log("mSTP(): Object.keys(state): " + Object.keys(state));
+	console.log("mSTP(): Object.keys(state.employeeForm): " + Object.keys(state.employeeForm));
+	console.log("mSTP(): Object.values(state.employeeForm): " + Object.values(state.employeeForm));
 	const employee = state.employeeForm;
 
   return { employee };
