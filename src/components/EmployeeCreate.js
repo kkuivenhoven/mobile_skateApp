@@ -13,7 +13,8 @@ class EmployeeCreate extends Component {
 
 		  var addr = addr_num + street + ", " + city + ", " + ab_state + ", " + zip;
       //var geo_lat, geo_lng, geo_NE, geo_SW;
-      var geo_lat, geo_lng, geo_NE_lat, geo_SW_lat, geo_NE_lng, geo_SW_lng;
+      var geo_lat, geo_lng, geo_NE_lat, geo_SW_lat, geo_NE_lng, geo_SW_lng, userTime;
+			userTime = 0;
 			Geocoder.from(addr).then(json => {
 					geo_lat = json.results[0].geometry.location.lat;
 					geo_lng = json.results[0].geometry.location.lng;  
@@ -23,7 +24,7 @@ class EmployeeCreate extends Component {
 					geo_SW_lng = json.results[0].geometry.viewport.southwest.lng;
 					console.log("geo_NE_lat: " + geo_NE_lat);
 					console.log("geo_NE_lng: " + geo_NE_lng);
-					this.props.skateSpotCreate({ name, addr_num, street, city, zip, ab_state, country, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng });
+					this.props.skateSpotCreate({ name, addr_num, street, city, zip, ab_state, country, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
 			}).catch(error => console.warn(error));
 	}
 
@@ -53,10 +54,10 @@ const styles = {
 
 const mapStateToProps = (state) => {
 	//const { name, phone, shift } = state.employeeForm;
-	const { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lng } = state.employeeForm;
+	const { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lng, userTime } = state.employeeForm;
 
 	//return { name, phone, shift };
-	return { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lng };
+	return { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lng, userTime };
 };
 
 

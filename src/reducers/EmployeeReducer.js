@@ -18,7 +18,6 @@ export default (state = INITIAL_STATE, action) => {
 			//console.log("action.payload: " + action.payload);
 			//console.log("action.payload.ab_state: " + action.payload.ab_state);
 			//console.log("state: " + state);
-			//console.log(">>>>>>okay<<<<<<");
 			//return action.payload;
 		case EMPLOYEES_FETCH_SUCCESS:
 			return action.payload;

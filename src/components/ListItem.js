@@ -53,8 +53,7 @@ class ListItem extends Component {
 				<View>
 					<Text>
 						{"	"} {employee.addr_num} {employee.street} {"\n"}
-						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country} {"\n"}
-						{"	"} {employee.lat}, {employee.lng}
+						{"	"} {employee.city}, {employee.ab_state} {employee.zip} {employee.country}
 					</Text>
 					<Button
 						onPress={() => {Actions.skateSpotShow(); }}

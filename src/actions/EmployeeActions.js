@@ -7,6 +7,7 @@ import {
 	EMPLOYEE_SAVE_SUCCESS,
 	LOGOUT_USER,
 	SELECT_LIBRARY,
+	EMPLOYEE_TIME,
 	//GET_LAT_LONG
 } from './types';
 
@@ -48,7 +49,7 @@ export const skateSpotUpdate = ({ prop, value }) => {
 };
 
 
-export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng }) => {
+export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime }) => {
 	const { currentUser } = firebase.auth();
 	console.log(currentUser);
 	//console.log(name, phone, shift);
@@ -57,7 +58,7 @@ export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, c
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees`)
-			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng })
+			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_CREATE });
 				Actions.main({ type: 'reset' });
@@ -78,13 +79,27 @@ export const skateSpotsFetch = () => {
 };
 
 
-export const skateSpotSave = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng }) => {
+export const saveTime = ({ userTime, uid }) => {
+	const { currentUser } = firebase.auth();
+	
+	return (dispatch) => {
+		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+			.update({ userTime })
+			.then(() => {
+				dispatch({ type: EMPLOYEE_TIME });
+			});
+	};
+};
+
+
+
+export const skateSpotSave = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime }) => {
 	const { currentUser } = firebase.auth();
 
 			//.set({ name, phone, shift })
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
-			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng })
+			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
 				Actions.main({ type: 'reset' });
