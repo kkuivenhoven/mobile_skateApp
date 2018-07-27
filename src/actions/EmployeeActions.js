@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
 	EMPLOYEE_UPDATE,
 	EMPLOYEE_CREATE,
+	SKATESPOT_GPS_CREATE,
 	EMPLOYEES_FETCH_SUCCESS,
 	EMPLOYEE_SAVE_SUCCESS,
 	LOGOUT_USER,
@@ -116,6 +117,23 @@ export const skateSpotDelete = ({ uid }) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
 			.remove()
 			.then(() => {
+				Actions.main({ type: 'reset' });
+			});
+	};
+};
+
+export const skateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime }) => {
+	const { currentUser } = firebase.auth();
+	console.log(currentUser);
+	//console.log(name, phone, shift);
+	console.log(name, addr_num, street, city, zip, ab_state, country, lat, lng);
+			//.push({ name, phone, shift })
+
+	return (dispatch) => {
+		firebase.database().ref(`/users/${currentUser.uid}/employees`)
+			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
+			.then(() => {
+				dispatch({ type: SKATESPOT_GPS_CREATE });
 				Actions.main({ type: 'reset' });
 			});
 	};

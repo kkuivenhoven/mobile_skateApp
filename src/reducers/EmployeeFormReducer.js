@@ -1,6 +1,7 @@
 import {
 	EMPLOYEE_UPDATE,
 	EMPLOYEE_CREATE,
+	SKATESPOT_GPS_CREATE,
 	EMPLOYEE_SAVE_SUCCESS,
 	SELECT_LIBRARY,
 	EMPLOYEE_TIME,
@@ -31,6 +32,8 @@ export default (state = INITIAL_STATE, action) => {
 	switch(action.type){
 		case EMPLOYEE_UPDATE:
 			return { ...state, [action.payload.prop]: action.payload.value };
+		case SKATESPOT_GPS_CREATE:
+			return INITIAL_STATE;
 		case EMPLOYEE_CREATE:
 			return INITIAL_STATE;
 		case SELECT_LIBRARY:
@@ -48,18 +51,6 @@ export default (state = INITIAL_STATE, action) => {
 		//case GET_LAT_LONG:
 	  //	return action.payload;
 		case EMPLOYEE_TIME:
-			console.log("inside EMPLOYEE_TIME EmployeeFormReducer.js");
-			console.log("Object.getOwnPropertyNames(INITIAL_STATE): " + Object.getOwnPropertyNames(INITIAL_STATE));
-			console.log(">>> Object.keys(state): " + Object.keys(state));
-			console.log(">>> Object.keys(INITIAL_STATE): " + Object.keys(INITIAL_STATE));
-			console.log(">>> INITIAL_STATE.userTime: " + INITIAL_STATE.userTime);
-			console.log(">>> Object.keys(action): " + Object.keys(action));
-			console.log(">>> action: " + action);
-			console.log("... Object.keys(action): " + Object.keys(action));
-			console.log("... Object.values(action): " + Object.values(action));
-			console.log("... action.employee_time: " + action.employee_time);
-			console.log("... Object.values(state): " + Object.values(state));
-			console.log(">>> state: " + state);
 			return state;
 		case EMPLOYEE_SAVE_SUCCESS:
 			return INITIAL_STATE;

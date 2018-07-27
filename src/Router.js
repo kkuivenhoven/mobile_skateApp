@@ -5,6 +5,7 @@ import LoginForm from './components/LoginForm';
 import LogoutForm from './components/LogoutForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
+import SkateSpotGPSCreate from './components/SkateSpotGPSCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import NewPage from './components/NewPage';
 import Nav from './components/Nav';
@@ -42,6 +43,7 @@ const RouterComponent = () => {
 
 					<Scene key="fetchSkateSpotList" component={EmployeeList} title="Skate Spots" />
 					<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />
+					<Scene key="skateSpotGPSCreate" component={SkateSpotGPSCreate} title="Create Skate Spot by GPS" />
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 					<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />
 				</Scene>
