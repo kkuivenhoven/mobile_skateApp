@@ -1,6 +1,7 @@
 import {
 	EMPLOYEE_UPDATE,
 	EMPLOYEE_CREATE,
+	NEW_SKATESPOT_GPS_CREATE,
 	SKATESPOT_GPS_CREATE,
 	EMPLOYEE_SAVE_SUCCESS,
 	SELECT_LIBRARY,
@@ -23,7 +24,8 @@ const INITIAL_STATE = {
 	NE_lng: '',
 	SW_lat: '',
 	SW_lng: '',
-	userTime: ''
+	userTime: '',
+	user_id: ''
 };
 
 export default (state = INITIAL_STATE, action) => {
@@ -32,6 +34,8 @@ export default (state = INITIAL_STATE, action) => {
 	switch(action.type){
 		case EMPLOYEE_UPDATE:
 			return { ...state, [action.payload.prop]: action.payload.value };
+		case NEW_SKATESPOT_GPS_CREATE:
+			return INITIAL_STATE;
 		case SKATESPOT_GPS_CREATE:
 			return INITIAL_STATE;
 		case EMPLOYEE_CREATE:

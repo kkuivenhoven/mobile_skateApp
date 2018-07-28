@@ -3,6 +3,7 @@ import { Actions } from 'react-native-router-flux';
 import {
 	EMPLOYEE_UPDATE,
 	EMPLOYEE_CREATE,
+	NEW_SKATESPOT_GPS_CREATE,
 	SKATESPOT_GPS_CREATE,
 	EMPLOYEES_FETCH_SUCCESS,
 	EMPLOYEE_SAVE_SUCCESS,
@@ -122,12 +123,11 @@ export const skateSpotDelete = ({ uid }) => {
 	};
 };
 
+
 export const skateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime }) => {
 	const { currentUser } = firebase.auth();
 	console.log(currentUser);
-	//console.log(name, phone, shift);
 	console.log(name, addr_num, street, city, zip, ab_state, country, lat, lng);
-			//.push({ name, phone, shift })
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees`)
@@ -135,6 +135,26 @@ export const skateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state
 			.then(() => {
 				dispatch({ type: SKATESPOT_GPS_CREATE });
 				Actions.main({ type: 'reset' });
+			});
+	};
+};
+
+
+export const newSkateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime, user_id }) => {
+	const { currentUser } = firebase.auth();
+	console.log(currentUser);
+	console.log(name, addr_num, street, city, zip, ab_state, country, lat, lng);
+
+	return (dispatch) => {
+		firebase.database().ref(`/skate_spots`)
+			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime, user_id })
+			.then(() => {
+				firebase.database().ref(`/users/${currentUser.uid}/employees`)
+					.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
+					.then(() => {
+						dispatch({ type: NEW_SKATESPOT_GPS_CREATE });
+						Actions.main({ type: 'reset' });
+					});
 			});
 	};
 };
