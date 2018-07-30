@@ -84,7 +84,7 @@ class SkateSpotList extends Component {
     }; 
 
 		return (
-			<View style={{flex:1}}>
+			<View style={{flex: 1}}>
 				<View style={styles.topGrid}>
 					<ListView
 						enableEmptySections
@@ -119,6 +119,7 @@ const styles = {
 		borderRadius: 4,
 		borderWidth: 5,
 		borderColor: '#d6d7da',
+		height: dim.height/2,
 	},
 	bottomGrid: {
 		position: 'absolute',
@@ -132,11 +133,10 @@ const styles = {
 		borderRadius: 4,
 		borderWidth: 5,
 		borderColor: '#d6d7da',
-		top: 0,
 		left: 0,
 		right: 0,
 		bottom: 0,
-		height: dim.height/2,
+		height: (dim.height/3),
 	},
 };
 
@@ -145,9 +145,11 @@ const mapStateToProps = state => {
 	console.log("state.skateSpots: " + state.skateSpots);
 	console.log("Object.keys(state.skateSpots): " + Object.keys(state.skateSpots));
 	console.log("Object.values(state.skateSpots): " + Object.values(state.skateSpots));
+
 	const skate_spots = _.map((state.skateSpots), (val, uid) => {
 		return { ...val, uid };
 	});
+
 	console.log("skate_spots: " + skate_spots);
 	console.log("Object.keys(skate_spots): " + Object.keys(skate_spots));
 	console.log("Object.values(skate_spots): " + Object.values(skate_spots));

@@ -41,6 +41,14 @@ class Navigation extends Component {
 
         <CardSection>
           <Button
+						onPress={() => {Actions.newSkateSpotCreate(); }}
+					>
+						So cute ;)
+					</Button>
+        </CardSection>
+
+        <CardSection>
+          <Button
 						onPress={() => {Actions.fetchSkateSpotList(); }}
 					>
 						Skate Spot List

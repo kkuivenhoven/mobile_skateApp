@@ -13,6 +13,7 @@ import NewPage from './components/NewPage';
 import Nav from './components/Nav';
 import ListShow from './components/ListShow';
 import SkateSpotShow from './components/SkateSpotShow';
+import NewSkateSpotCreate from './components/NewSkateSpotCreate';
 
 
 const RouterComponent = () => {
@@ -52,6 +53,7 @@ const RouterComponent = () => {
 
 					<Scene key="skateSpotList" component={SkateSpotList} title="Skate Spot List" />
 					<Scene key="new_skateSpotShow" component={SkateSpotShow} title="Skate Spot Show" />
+					<Scene key="newSkateSpotCreate" component={NewSkateSpotCreate} title="New Create Skate Spot" />
 
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 					<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />
