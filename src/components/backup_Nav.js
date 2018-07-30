@@ -16,9 +16,26 @@ class Navigation extends Component {
 
         <CardSection>
           <Button
+						onPress={() => {Actions.skateSpotGPSCreate(); }}
+					>
+						Add Spot via GPS	
+					</Button>
+        </CardSection>
+
+        <CardSection>
+          <Button
 						onPress={() => {Actions.new_skateSpotGPSCreate(); }}
 					>
 						New Add Spot via GPS	
+					</Button>
+        </CardSection>
+
+
+        <CardSection>
+          <Button
+						onPress={() => {Actions.skateSpotCreate(); }}
+					>
+						Add Spot	
 					</Button>
         </CardSection>
 
@@ -27,6 +44,14 @@ class Navigation extends Component {
 						onPress={() => {Actions.newSkateSpotCreate(); }}
 					>
 						New Add Spot
+					</Button>
+        </CardSection>
+
+        <CardSection>
+          <Button
+						onPress={() => {Actions.fetchSkateSpotList(); }}
+					>
+						Skate Spot List
 					</Button>
         </CardSection>
 
