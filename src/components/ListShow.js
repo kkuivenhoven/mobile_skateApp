@@ -8,7 +8,7 @@ import { Button, Card, CardSection } from './common';
 import DoubleClick from 'react-native-double-click';
 import { connect } from 'react-redux';
 //import * as actions from '../actions';
-import { saveTime, skateSpotUpdate } from '../actions';
+import { saveTime, skateSpotUpdate, updateCIusers } from '../actions';
 import EmployeeForm from './EmployeeForm';
 import StopWatch from './StopWatch';
 import MapView, { Marker, Polyline, Polygon, Overlay, Circle } from 'react-native-maps';
@@ -229,6 +229,7 @@ class ListShow extends Component {
 
 	render(){
 		const employee = this.props.employee;
+		const { uid } = this.props.employee;
 
 			return (
 
@@ -239,6 +240,9 @@ class ListShow extends Component {
 							{"  "} {employee[1].city}, {employee[1].ab_state} {employee[1].zip} {employee[1].country} {"\n"}
 							{"  "} {employee[1].userTime}
 						</Text>
+						<Button onPress={() => this.props.updateCIusers(uid)}>
+							Update
+						</Button>
 						<Button onPress={() => this.checkLocation()}>
 							Check Location
 						</Button>
@@ -381,5 +385,5 @@ const mapStateToProps = (state) => {
 
 //export default connect(mapStateToProps, actions)(ListShow);
 export default connect(mapStateToProps, {
-	saveTime, skateSpotUpdate
+	saveTime, skateSpotUpdate, updateCIusers
 })(ListShow);

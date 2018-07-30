@@ -4,7 +4,7 @@ import { View, Text, Dimensions } from 'react-native';
 import { CardSection, Button } from './common';
 import { connect } from 'react-redux';
 import { ScrollView, ListView } from 'react-native';
-import { retrieveSkateSpots, skateSpotsFetch, logoutUser } from '../actions';
+import { skateSpotsFetch, logoutUser } from '../actions';
 import ListItem from './ListItem';
 import { Actions } from 'react-native-router-flux';
 import MapView, { Marker } from 'react-native-maps';
@@ -25,7 +25,6 @@ class EmployeeList extends Component {
 
 	componentWillMount(){
 		this.props.skateSpotsFetch();
-		//this.props.retrieveSkateSpots();
 		this.createDataSource(this.props);
 		navigator.geolocation.watchPosition(
 			(position) => {
@@ -38,8 +37,6 @@ class EmployeeList extends Component {
 					});
 			},
 		);
-		//console.log("Object.keys(this.props): " + Object.keys(this.props));
-		//console.log("Object.values(this.props): " + Object.values(this.props));
 	}
 
 	componentWillReceiveProps(nextProps){
@@ -47,9 +44,6 @@ class EmployeeList extends Component {
 	}
 
 	createDataSource({ employees }){
-		//console.log("eeemmmppppllloooyeeeeeessssssssss");
-		//console.log("createDataSource. Object.keys(employees)" + Object.keys(employees));
-		//console.log("> createDataSource. Object.values(employees)" + Object.values(employees));
 		const ds = new ListView.DataSource({
 			rowHasChanged: (r1, r2) => r1 !== r2
 		});
@@ -66,9 +60,9 @@ class EmployeeList extends Component {
 						longitude: position.coords.longitude,
 						error: null,
 					}, () => {
-						//console.log("this.state.latitude: " + this.state.latitude);
+						console.log("this.state.latitude: " + this.state.latitude);
 						userLatLng.push({latitude: this.state.latitude, longitude: this.state.longitude});
-						//console.log("userLatLng: " + userLatLng);
+						console.log("userLatLng: " + userLatLng);
 						return userLatLng;
 					});
 			},
@@ -87,7 +81,7 @@ class EmployeeList extends Component {
 						error: null,
 					}, () => {
 						userRegion.push({latitude: this.state.latitude, longitude: this.state.longitude, latitudeDelta: this.state.latitudeDelta, longitudeDelta: this.state.longitudeDelta });
-						//console.log("userRegion: " + userRegion);
+						console.log("userRegion: " + userRegion);
 						return userRegion;
 					});
 			},
@@ -109,9 +103,6 @@ class EmployeeList extends Component {
 
 
 	renderRow(employee){
-		//console.log("renderRow(emp): " + employee);
-		console.log("renderRow(emp): Object.keys(emp)" + Object.keys(employee));
-		console.log("renderRow(emp): Object.values(emp)" + Object.values(employee));
 		return <ListItem employee={employee} />;
 	}
 
@@ -129,20 +120,30 @@ class EmployeeList extends Component {
 		};
 
 
-		//console.log("EL.js: this.props: " + this.props);
-		//console.log("EL.js: Object.keys(this.props): " + Object.keys(this.props));
-		//console.log("EL.js: this.dataSource: " + this.dataSource);
-		//console.log("EL.js: Object.keys(this.dataSource): " + Object.keys(this.dataSource));
-		//console.log("EL.js: this.props.employees: " + this.props.employees);
-		//console.log("EL.js: Object.keys(this.props.employees): " + Object.keys(this.props.employees));
-
 		return (
-				<ListView
-					style={styles.topGrid}
-					enableEmptySections
-					dataSource={this.dataSource}
-					renderRow={this.renderRow}
-				/>
+			<View style={{flex:1}}>
+				<View style={styles.topGrid}>
+					<ListView
+						enableEmptySections
+						dataSource={this.dataSource}
+						renderRow={this.renderRow}
+					/>
+				</View>
+				<View style={styles.bottomGrid}>
+					<MapView
+						style={ styles.map }
+						region={ userCoords }
+						zoomEnabled={true}
+						showsUserLocation={true}
+					>  
+						{this._getCoords(this.props.employees).map(marker => (
+							<Marker
+								coordinate={{latitude: marker.latitude, longitude: marker.longitude}}
+							/>
+						))}
+					</MapView>
+				</View>
+			</View>
 		);
 	}
 }
@@ -151,11 +152,9 @@ const dim = Dimensions.get('screen');
 
 const styles =  {
 	topGrid: {
-		//position: 'absolute',
 		borderRadius: 4,
 		borderWidth: 5,
 		borderColor: '#d6d7da',
-    //height: dim.height/2,
 	},
 	bottomGrid: {
 		position: 'absolute',
@@ -182,15 +181,10 @@ const mapStateToProps = state => {
 	const employees = _.map((state.employees), (val, uid) => {
 		return { ...val, uid };
 	});
-
-	console.log("EL: Object.keys(state): " + Object.keys(state));
-	console.log("EL: Object.keys(state): " + Object.keys(state));
-	console.log("EL: state.employees: " + state.employees);
-	console.log("EL: state.employees: " + state.employees);
 	
 	return { employees };
 };
 
 
 
-export default connect(mapStateToProps, {skateSpotsFetch, logoutUser })(EmployeeList);
+export default connect(mapStateToProps, { skateSpotsFetch, logoutUser })(EmployeeList);

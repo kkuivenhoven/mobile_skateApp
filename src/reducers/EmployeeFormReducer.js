@@ -6,6 +6,7 @@ import {
 	EMPLOYEE_SAVE_SUCCESS,
 	SELECT_LIBRARY,
 	EMPLOYEE_TIME,
+	UPDATE_CI_USERS,
 	//GET_LAT_LONG
 } from '../actions/types';
 
@@ -25,12 +26,13 @@ const INITIAL_STATE = {
 	SW_lat: '',
 	SW_lng: '',
 	userTime: '',
-	user_id: ''
+	user_id: '',
+	checkedIn_users: []
 };
 
 export default (state = INITIAL_STATE, action) => {
-	//console.log("+++...>>> EmployeeFormReducer.js");
-	console.log(action);
+	console.log("+++...>>> EmployeeFormReducer.js");
+	console.log(action.type);
 	switch(action.type){
 		case EMPLOYEE_UPDATE:
 			return { ...state, [action.payload.prop]: action.payload.value };
@@ -56,6 +58,9 @@ export default (state = INITIAL_STATE, action) => {
 	  //	return action.payload;
 		case EMPLOYEE_TIME:
 			return state;
+		case UPDATE_CI_USERS:
+			console.log("inside UPDATE_CI_USERS reducers");
+			return action.payload;
 		case EMPLOYEE_SAVE_SUCCESS:
 			return INITIAL_STATE;
 		default: 

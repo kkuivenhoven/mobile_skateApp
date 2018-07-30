@@ -8,9 +8,11 @@ import EmployeeCreate from './components/EmployeeCreate';
 import SkateSpotGPSCreate from './components/SkateSpotGPSCreate';
 import NewSkateSpotGPSCreate from './components/NewSkateSpotGPSCreate';
 import EmployeeEdit from './components/EmployeeEdit';
+import SkateSpotList from './components/SkateSpotList';
 import NewPage from './components/NewPage';
 import Nav from './components/Nav';
 import ListShow from './components/ListShow';
+import SkateSpotShow from './components/SkateSpotShow';
 
 
 const RouterComponent = () => {
@@ -47,6 +49,9 @@ const RouterComponent = () => {
 					<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />
 					<Scene key="skateSpotGPSCreate" component={SkateSpotGPSCreate} title="Create Skate Spot by GPS" />
 					<Scene key="new_skateSpotGPSCreate" component={NewSkateSpotGPSCreate} title="New Create Skate Spot by GPS" />
+
+					<Scene key="skateSpotList" component={SkateSpotList} title="Skate Spot List" />
+					<Scene key="new_skateSpotShow" component={SkateSpotShow} title="Skate Spot Show" />
 
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 					<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />

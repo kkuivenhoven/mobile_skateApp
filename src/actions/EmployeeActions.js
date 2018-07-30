@@ -10,6 +10,8 @@ import {
 	LOGOUT_USER,
 	SELECT_LIBRARY,
 	EMPLOYEE_TIME,
+	UPDATE_CI_USERS,
+	//RETRIEVE_SKATE_SPOTS,
 	//GET_LAT_LONG
 } from './types';
 
@@ -30,6 +32,20 @@ import {
 		});
 	};
 }*/
+
+export const updateCIusers = (libraryId) => {
+	const { currentUser } = firebase.auth();
+
+	return (dispatch) => {
+		firebase.database().ref(`/skate_spots/${libraryId}`)
+			.update({"checkedIn_users": currentUser.uid})
+			.then(() => {
+				dispatch({ type: UPDATE_CI_USERS });
+				Actions.main({ type: 'reset' });
+			});
+	};
+};
+
 
 export const selectLibrary = (libraryId) => {
 	const { currentUser } = firebase.auth();
@@ -72,9 +88,11 @@ export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, c
 export const skateSpotsFetch = () => {
 	const { currentUser } = firebase.auth();
 
+		//firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		  //.once('value', snapshot => {
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees`)
-			.on('value', snapshot => {
+		  .on('value', snapshot => {
 				dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
 			});
 	};
@@ -140,14 +158,14 @@ export const skateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state
 };
 
 
-export const newSkateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime, user_id }) => {
+export const newSkateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime, user_id, checkedIn_users }) => {
 	const { currentUser } = firebase.auth();
 	console.log(currentUser);
 	console.log(name, addr_num, street, city, zip, ab_state, country, lat, lng);
 
 	return (dispatch) => {
 		firebase.database().ref(`/skate_spots`)
-			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime, user_id })
+			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime, user_id, checkedIn_users })
 			.then(() => {
 				firebase.database().ref(`/users/${currentUser.uid}/employees`)
 					.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
@@ -158,5 +176,29 @@ export const newSkateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_st
 			});
 	};
 };
+
+/*return (dispatch) => {
+		.on('value', snapshot => {
+			console.log("INSIDE THE FIREBASE CALL ");
+			console.log("snapshot.val(): " + snapshot.val());
+			dispatch({ type: RETRIEVE_SKATE_SPOTS, payload: snapshot.val() });
+		});
+};*/
+
+/*export const retrieveSkateSpots = () => {
+	console.log("inside retrieveSkateSpots()");
+		console.log("rSS() inside return(dispatch)");
+		var ref = firebase.database().ref(`/skate_spots`);
+		console.log("Object.keys(ref): " + Object.keys(ref));	
+		console.log("Object.values(ref): " + Object.values(ref));	
+		return (dispatch) => {
+				ref.on('value', snapshot => {
+					console.log("INSIDE THE FIREBASE CALL ");
+					console.log("snapshot.val(): " + snapshot.val());
+					dispatch({ type: RETRIEVE_SKATE_SPOTS, payload: snapshot.val() });
+				});
+		};
+};*/
+
 
 

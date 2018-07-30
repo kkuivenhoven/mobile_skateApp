@@ -49,6 +49,14 @@ class Navigation extends Component {
 
         <CardSection>
           <Button
+						onPress={() => {Actions.skateSpotList(); }}
+					>
+						New Skate Spot List
+					</Button>
+        </CardSection>
+
+        <CardSection>
+          <Button
 						onPress={() => { firebase.auth().signOut(); Actions.pop(); }}
 					>
 						Log Out

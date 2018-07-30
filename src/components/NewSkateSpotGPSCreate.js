@@ -32,6 +32,7 @@ class NewSkateSpotGPSCreate extends Component {
 		console.log("Object.values(currentUser): " + Object.values(currentUser));
 		const { name } = this.props;
 		var g_num, g_street, g_city, g_zip, g_state, g_country, geo_NE_lat, geo_NE_lng, geo_SW_lat, geo_SW_lng;
+		var user_ids = [];
 		
 		Geocoder.from({lat: this.state.lat, lng: this.state.lng})		
 			.then(json => {
@@ -47,7 +48,7 @@ class NewSkateSpotGPSCreate extends Component {
         geo_SW_lat = json.results[0].geometry.viewport.southwest.lat;
         geo_SW_lng = json.results[0].geometry.viewport.southwest.lng;	
 
-				this.props.newSkateSpotGPSCreate({ name, addr_num: g_num, street: g_street, city: g_city, zip: g_zip, ab_state: g_state, country: g_country, lat: this.state.lat, lng: this.state.lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime: 0, user_id: currentUser.uid });
+				this.props.newSkateSpotGPSCreate({ name, addr_num: g_num, street: g_street, city: g_city, zip: g_zip, ab_state: g_state, country: g_country, lat: this.state.lat, lng: this.state.lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime: 0, user_id: currentUser.uid, checkedIn_users: user_ids });
 		})
 		.catch(error => console.warn(error));
 	}

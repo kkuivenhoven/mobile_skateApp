@@ -16,6 +16,8 @@ export const EMPLOYEE_CREATE = 'employee_create';
 
 export const SKATESPOT_GPS_CREATE = 'skatespot_gps_create';
 export const NEW_SKATESPOT_GPS_CREATE = 'new_skatespot_gps_create';
+export const UPDATE_CI_USERS = 'update_ci_users';
+export const RETRIEVE_SKATE_SPOTS = 'retrieve_skate_spots';
 
 export const EMPLOYEES_FETCH_SUCCESS = 'employees_fetch_success';
 export const EMPLOYEE_SAVE_SUCCESS = 'employee_save_success';
