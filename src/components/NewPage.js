@@ -6,7 +6,7 @@ class newPage extends Component {
 		return (
 			<View>
 				<Text>
-					K
+					Test
 				</Text>
 			</View>
 		);

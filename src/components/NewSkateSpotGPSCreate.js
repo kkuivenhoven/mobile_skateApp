@@ -22,8 +22,6 @@ class NewSkateSpotGPSCreate extends Component {
 
 
 	onButtonPress(){
-		//const { name, phone, shift } = this.props;
-		//const { name, addr_num, street, city, zip, ab_state, country, lat, lng } = this.props;
 		const { currentUser } = firebase.auth();
 		const { name } = this.props;
 		var g_num, g_street, g_city, g_zip, g_state, g_country, geo_NE_lat, geo_NE_lng, geo_SW_lat, geo_SW_lng;
@@ -108,10 +106,8 @@ const styles = {
 
 
 const mapStateToProps = (state) => {
-	//const { name, phone, shift } = state.employeeForm;
 	const { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lng, userTime } = state.employeeForm;
 
-	//return { name, phone, shift };
 	return { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lng, userTime };
 };
 

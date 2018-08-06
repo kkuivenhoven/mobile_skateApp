@@ -2,7 +2,6 @@ import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
-import LogoutForm from './components/LogoutForm';
 import EmployeeList from './components/EmployeeList';
 import EmployeeCreate from './components/EmployeeCreate';
 import SkateSpotGPSCreate from './components/SkateSpotGPSCreate';
@@ -56,7 +55,6 @@ const RouterComponent = () => {
 					<Scene key="newSkateSpotCreate" component={NewSkateSpotCreate} title="New Create Skate Spot" />
 
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
-					<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />
 				</Scene>
 
 			</Scene>
@@ -64,6 +62,7 @@ const RouterComponent = () => {
 	);
 };
 
+					/*<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />*/
 
 
 export default RouterComponent;

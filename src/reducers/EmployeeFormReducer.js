@@ -7,8 +7,8 @@ import {
 	SELECT_LIBRARY,
 	EMPLOYEE_TIME,
 	UPDATE_CI_USERS,
-	//GET_LAT_LONG
 } from '../actions/types';
+
 
 const INITIAL_STATE = {
 	name: '',
@@ -30,9 +30,8 @@ const INITIAL_STATE = {
 	checkedIn_users: []
 };
 
+
 export default (state = INITIAL_STATE, action) => {
-	console.log("+++...>>> EmployeeFormReducer.js");
-	console.log(action.type);
 	switch(action.type){
 		case EMPLOYEE_UPDATE:
 			return { ...state, [action.payload.prop]: action.payload.value };
@@ -43,23 +42,10 @@ export default (state = INITIAL_STATE, action) => {
 		case EMPLOYEE_CREATE:
 			return INITIAL_STATE;
 		case SELECT_LIBRARY:
-			/*console.log("+.> in SELECT_LIBRARY !!! ----+++++");
-			console.log("Object.getOwnPropertyNames(state): " + Object.getOwnPropertyNames(state));
-			console.log("state.employees: " + state.employees);
-			console.log("INITIAL_STATE: " + INITIAL_STATE);
-			console.log("Object.getOwnPropertyNames(INITIAL_STATE): " + Object.getOwnPropertyNames(INITIAL_STATE));
-			console.log("state.name: " + state.name);
-			console.log("+.> state: " + state);
-			console.log("+.> action.payload: " + action.payload);
-			console.log("+.> action.payload.name: " + action.payload.name);
-			console.log("+.> action.payload.zip: " + action.payload.zip);*/
 			return action.payload;
-		//case GET_LAT_LONG:
-	  //	return action.payload;
 		case EMPLOYEE_TIME:
 			return state;
 		case UPDATE_CI_USERS:
-			console.log("inside UPDATE_CI_USERS reducers");
 			return action.payload;
 		case EMPLOYEE_SAVE_SUCCESS:
 			return INITIAL_STATE;

@@ -8,7 +8,6 @@ import {
 	LOGOUT_USER
 } from '../actions/types';
 
-
 const INITIAL_STATE = {
 	email: '',
 	password: '',
@@ -16,7 +15,6 @@ const INITIAL_STATE = {
 	error: '',
 	loading: false,
 };
-
 
 export default (state = INITIAL_STATE, action) => {
 
@@ -39,6 +37,3 @@ export default (state = INITIAL_STATE, action) => {
 			return state;
 	}
 };	
-
-
-

@@ -10,6 +10,7 @@ export default combineReducers({
 	employeeForm: EmployeeFormReducer,
 	employees: EmployeeReducer,
 	skateSpots: SkateSpotReducer,
+	selectedId: SelectionReducer,
 });
 
 

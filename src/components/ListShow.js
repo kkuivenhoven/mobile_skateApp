@@ -51,11 +51,6 @@ class ListShow extends Component {
 			lng: this.props.employee[1].lng,
 		};
 
-		//console.log("goAway: " + goAway);
-		//console.log("Object.keys(goAway): " + Object.keys(goAway));
-		//console.log("Object.values(goAway): " + Object.values(goAway));
-		console.log("this.state.userLat: " + this.state.userLat);
-		console.log("this.state.userLng: " + this.state.userLng);
 	 
 		//GeoFencing.containsLocation(goAway, polygon)
 		GeoFencing.containsLocation(point, polygon)
@@ -212,8 +207,6 @@ class ListShow extends Component {
 	startTimer(){
 		//if(this.state.clicked == true){
 		if(this.state.inFence == true){
-			console.log("startTimer():");
-			console.log("this.state.inFence: " + this.state.inFence);
 				//<StopWatch/>
 			return (
 				<Card>
@@ -364,19 +357,6 @@ const styles = {
 
 
 const mapStateToProps = (state) => {
-	/*console.log("ListShow.js mapStateToProps(): ");
-	console.log("Object.keys(state): " + Object.keys(state));
-	console.log("Object.keys(state.employeeForm): " + Object.keys(state.employeeForm));
-	console.log("Object.values(state.employeeForm): " + Object.values(state.employeeForm));
-	console.log("Object.values(state.employeeForm[0]: " + Object.values(state.employeeForm[0]));
-	console.log("Object.keys(state.employeeForm[1]: " + Object.keys(state.employeeForm[1]));
-	console.log("Object.values(state.employeeForm[1]: " + Object.values(state.employeeForm[1]));*/
-  //const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat } = state.employeeForm;
-  //return { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat };
-  //const { employee } = state.employeeForm;
-	console.log("mSTP(): Object.keys(state): " + Object.keys(state));
-	console.log("mSTP(): Object.keys(state.employeeForm): " + Object.keys(state.employeeForm));
-	console.log("mSTP(): Object.values(state.employeeForm): " + Object.values(state.employeeForm));
 	const employee = state.employeeForm;
 
   return { employee };

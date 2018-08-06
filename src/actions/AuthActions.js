@@ -25,7 +25,6 @@ export const passwordChanged = (text) => {
 };
 
 
-//export const signupUser = ({ email, password }) => {
 export const signupUser = ({ email, password }) => {
 	return (dispatch) => {
 		dispatch({ type: SIGNUP_USER });
@@ -55,15 +54,6 @@ export const loginUser = ({ email, password }) => {
 };
 
 
-//export const logoutUser = (dispach, user) => {
-/*export const logoutUser = () => {
-	console.log("INSIDE logoutUser()");
-	//firebase.auth().signOut();
-	//Actions.auth();
-	//dispatch({ type: LOGOUT_USER });
-};*/
-
-
 const loginUserFail = (dispatch) => {
 	dispatch({ type: LOGIN_USER_FAIL });
 };
@@ -77,5 +67,3 @@ const loginUserSuccess = (dispatch, user) => {
 
 	Actions.main();
 };
-
-

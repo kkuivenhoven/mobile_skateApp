@@ -1,6 +1,8 @@
 import {
 	//LOGIN_USER_SUCCESS,
 	RETRIEVE_SKATE_SPOTS,
+	//GET_SKATE_SPOT,
+	SKATE_SPOT_UPDATE,
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -24,20 +26,11 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
-	/*console.log("...........inside inside RETRIEVE SKATE SPOTS");
-	console.log("......action.type: " + action.type);
-	console.log("......Object.keys(action): " + Object.keys(action));
-	console.log("......Object.values(action): " + Object.values(action));
-	console.log("......Object.keys(state): " + Object.keys(state));
-	console.log("......Object.values(state): " + Object.values(state));*/
 	switch(action.type){
-    //case LOGIN_USER_SUCCESS:
-	//		console.log("alright try this");
-	//		return action.payload;
+		case SKATE_SPOT_UPDATE:
+			return { ...state, [action.payload.prop]: action.payload.value };
 		case RETRIEVE_SKATE_SPOTS:
-			console.log("RETRIEVE SKATE SPOTS");
 			return action.payload;
-			//return INITIAL_STATE;
 		default:
 			return state;
 	}

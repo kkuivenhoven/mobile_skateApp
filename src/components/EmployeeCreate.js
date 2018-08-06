@@ -22,8 +22,6 @@ class EmployeeCreate extends Component {
 					geo_NE_lng = json.results[0].geometry.viewport.northeast.lng;
 					geo_SW_lat = json.results[0].geometry.viewport.southwest.lat;
 					geo_SW_lng = json.results[0].geometry.viewport.southwest.lng;
-					console.log("geo_NE_lat: " + geo_NE_lat);
-					console.log("geo_NE_lng: " + geo_NE_lng);
 					this.props.skateSpotCreate({ name, addr_num, street, city, zip, ab_state, country, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
 			}).catch(error => console.warn(error));
 	}

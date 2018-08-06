@@ -11,7 +11,6 @@ import {
 	SELECT_LIBRARY,
 	EMPLOYEE_TIME,
 	UPDATE_CI_USERS,
-	//RETRIEVE_SKATE_SPOTS,
 	//GET_LAT_LONG
 } from './types';
 
@@ -69,10 +68,6 @@ export const skateSpotUpdate = ({ prop, value }) => {
 
 export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime }) => {
 	const { currentUser } = firebase.auth();
-	console.log(currentUser);
-	//console.log(name, phone, shift);
-	console.log(name, addr_num, street, city, zip, ab_state, country, lat, lng);
-			//.push({ name, phone, shift })
 
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees`)
@@ -116,7 +111,6 @@ export const saveTime = ({ userTime, uid }) => {
 export const skateSpotSave = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime }) => {
 	const { currentUser } = firebase.auth();
 
-			//.set({ name, phone, shift })
 	return (dispatch) => {
 		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
 			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
@@ -176,29 +170,3 @@ export const newSkateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_st
 			});
 	};
 };
-
-/*return (dispatch) => {
-		.on('value', snapshot => {
-			console.log("INSIDE THE FIREBASE CALL ");
-			console.log("snapshot.val(): " + snapshot.val());
-			dispatch({ type: RETRIEVE_SKATE_SPOTS, payload: snapshot.val() });
-		});
-};*/
-
-/*export const retrieveSkateSpots = () => {
-	console.log("inside retrieveSkateSpots()");
-		console.log("rSS() inside return(dispatch)");
-		var ref = firebase.database().ref(`/skate_spots`);
-		console.log("Object.keys(ref): " + Object.keys(ref));	
-		console.log("Object.values(ref): " + Object.values(ref));	
-		return (dispatch) => {
-				ref.on('value', snapshot => {
-					console.log("INSIDE THE FIREBASE CALL ");
-					console.log("snapshot.val(): " + snapshot.val());
-					dispatch({ type: RETRIEVE_SKATE_SPOTS, payload: snapshot.val() });
-				});
-		};
-};*/
-
-
-
