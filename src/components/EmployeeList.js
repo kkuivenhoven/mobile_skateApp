@@ -25,7 +25,6 @@ class EmployeeList extends Component {
 
 	componentWillMount(){
 		this.props.skateSpotsFetch();
-		//this.props.retrieveSkateSpots();
 		this.createDataSource(this.props);
 		navigator.geolocation.watchPosition(
 			(position) => {

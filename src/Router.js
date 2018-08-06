@@ -8,7 +8,6 @@ import SkateSpotGPSCreate from './components/SkateSpotGPSCreate';
 import NewSkateSpotGPSCreate from './components/NewSkateSpotGPSCreate';
 import EmployeeEdit from './components/EmployeeEdit';
 import SkateSpotList from './components/SkateSpotList';
-import NewPage from './components/NewPage';
 import Nav from './components/Nav';
 import ListShow from './components/ListShow';
 import SkateSpotShow from './components/SkateSpotShow';
@@ -42,7 +41,6 @@ const RouterComponent = () => {
 					/>
 
 					<Scene key="navigation" component={Nav} title="Navigation" initial />
-					<Scene key="newPage" component={NewPage} title="its a new page" />
 
 					<Scene key="fetchSkateSpotList" component={EmployeeList} title="Skate Spots" />
 
