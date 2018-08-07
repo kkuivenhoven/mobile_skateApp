@@ -4,6 +4,7 @@ import {
 	SKATE_SPOT_UPDATE,
 	RETRIEVE_SKATE_SPOTS,
 	GET_SKATE_SPOT,
+	SAVE_SKATE_SPOT_SUCCESS,
 } from './types';
 
 export const getSkateSpot = (skateSpotId) => {
@@ -38,4 +39,29 @@ export const updateSkateSpot = ({ prop, value }) => {
   };  
 };
 
+
+export const deleteSkateSpot = ({ uid }) => {
+
+  return () => {
+    firebase.database().ref(`/skate_spots/${uid}`)
+      .remove()
+      .then(() => {
+        Actions.main({ type: 'reset' }); 
+      }); 
+  }; 
+};
+
+
+export const saveSkateSpot = ({ name, addr_num, street, city, zip, ab_state, country, uid, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime }) => {
+	const { currentUser } = firebase.auth();
+
+	return (dispatch) => {
+		firebase.database().ref(`/skate_spots/${uid}`)
+			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
+			.then(() => {
+				dispatch({ type: SAVE_SKATE_SPOT_SUCCESS });
+				Actions.main({ type: 'reset' });
+			});
+	};
+};
 

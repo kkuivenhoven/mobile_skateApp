@@ -3,17 +3,18 @@ import React, { Component } from 'react';
 import { ScrollView } from 'react-native';
 import { connect } from 'react-redux';
 import Communications from 'react-native-communications';
-import EmployeeForm from './EmployeeForm';
-import { skateSpotUpdate, skateSpotSave, skateSpotDelete } from '../actions';
+//import EmployeeForm from './EmployeeForm';
+import SkateSpotForm from './SkateSpotForm';
+import { updateSkateSpot, saveSkateSpot, skateSpotUpdate, skateSpotSave, skateSpotDelete, deleteSkateSpot } from '../actions';
 import { Card, CardSection, Button, Confirm } from './common';
 import Geocoder from 'react-native-geocoding';
 
-class EmployeeEdit extends Component {
+class SkateSpotEdit extends Component {
 	state = {showModal: false };
 
 	componentWillMount() {
-		_.each(this.props.employee, (value, prop) => {
-			this.props.skateSpotUpdate({ prop, value });
+		_.each(this.props.skate_spot, (value, prop) => {
+			this.props.updateSkateSpot({ prop, value });
 		});
 	}
 
@@ -32,7 +33,8 @@ class EmployeeEdit extends Component {
 					geo_NE_lng = json.results[0].geometry.viewport.northeast.lng;
 					geo_SW_lat = json.results[0].geometry.viewport.southwest.lat;
 					geo_SW_lng = json.results[0].geometry.viewport.southwest.lng;
-					this.props.skateSpotSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
+					//this.props.skateSpotSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
+					this.props.saveSkateSpot({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
 			}).catch(error => console.warn(error));
 	}
 
@@ -45,8 +47,9 @@ class EmployeeEdit extends Component {
 
 
 	onAccept(){
-		const { uid } = this.props.employee;
-		this.props.skateSpotDelete({ uid });
+		//const { uid } = this.props.employee;
+		const { uid } = this.props.skate_spot;
+		this.props.deleteSkateSpot({ uid });
 	}
 
 	onDecline(){
@@ -58,7 +61,7 @@ class EmployeeEdit extends Component {
 		return (
 			<ScrollView>
 			<Card>
-				<EmployeeForm />
+				<SkateSpotForm />
 				<CardSection>
 					<Button onPress={this.onButtonPress.bind(this)}>
 						Save Changes
@@ -86,17 +89,25 @@ class EmployeeEdit extends Component {
 
 
 const mapStateToProps = (state) => {
+	console.log("mStP:: Object.keys(state): " + Object.keys(state));
+	console.log("mStP:: Object.values(state): " + Object.values(state));
+	console.log("mStP:: Object.keys(state.skateSpotsForm): " + Object.keys(state.skateSpotsForm));
+	console.log("mStP:: Object.values(state.skateSpotsForm): " + Object.values(state.skateSpotsForm));
+	/*console.log("mStP:: Object.keys(state.employeeForm): " + Object.keys(state.employeeForm));
+	console.log("mStP:: Object.values(state.employeeForm): " + Object.values(state.employeeForm));
+	console.log("mStP:: Object.keys(state.skateSpots): " + Object.keys(state.skateSpots));
+	console.log("mStP:: Object.values(state.skateSpots): " + Object.values(state.skateSpots));
+	console.log("mStP:: Object.keys(state.selectedId): " + Object.keys(state.selectedId));
+	console.log("mStP:: Object.values(state.selectedId): " + Object.values(state.selectedId));*/
 	//const { name, phone, shift } = state.employeeForm;
-	console.log("EE mStP:: Object.keys(state): " + Object.keys(state));
-	console.log("EE mStP:: Object.values(state): " + Object.values(state));
-	console.log("EE mStP:: Object.keys(state.employeeForm): " + Object.keys(state.employeeForm));
-	console.log("EE mStP:: Object.values(state.employeeForm): " + Object.values(state.employeeForm));
-	const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime } = state.employeeForm;
+	//const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime } = state.employeeForm;
+	//const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime } = state.skateSpots;
+	const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime } = state.skateSpotsForm;
 	//return { name, phone, shift };
 	return { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime };
 };
 
 
 export default connect(mapStateToProps, {
-	skateSpotUpdate, skateSpotSave, skateSpotDelete
-})(EmployeeEdit);
+	updateSkateSpot, skateSpotUpdate, skateSpotSave, skateSpotDelete, deleteSkateSpot, saveSkateSpot,
+})(SkateSpotEdit);

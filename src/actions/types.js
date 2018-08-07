@@ -21,6 +21,7 @@ export const UPDATE_CI_USERS = 'update_ci_users';
 export const SKATE_SPOT_UPDATE = 'skate_spot_update';
 export const RETRIEVE_SKATE_SPOTS = 'retrieve_skate_spots';
 export const GET_SKATE_SPOT = 'get_skate_spot';
+export const SAVE_SKATE_SPOT_SUCCESS = 'save_skate_spot_success';
 
 export const EMPLOYEES_FETCH_SUCCESS = 'employees_fetch_success';
 export const EMPLOYEE_SAVE_SUCCESS = 'employee_save_success';

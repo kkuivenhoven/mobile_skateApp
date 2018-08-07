@@ -1,4 +1,4 @@
-import React from 'react';
+/*import React from 'react';
 import { Scene, Router, Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
@@ -51,4 +51,4 @@ const RouterComponent = () => {
 
 
 
-export default RouterComponent;
+export default RouterComponent;*/

@@ -13,7 +13,8 @@ class SkateSpotShow extends Component {
   }
   
   onRowPress(){
-    Actions.employeeEdit({ employee: this.props.skate_spot }); 
+    //Actions.employeeEdit({ employee: this.props.skate_spot }); 
+    Actions.skateSpotEdit({ skate_spot: this.props.skate_spot }); 
   }
 
 	renderDesc(){
@@ -38,6 +39,7 @@ class SkateSpotShow extends Component {
 		return (
 			<TouchableWithoutFeedback
 				onPress={() => this.props.getSkateSpot(uid)}
+				onLongPress={this.onRowPress.bind(this)}
 			>
 				<View>
 					<CardSection>

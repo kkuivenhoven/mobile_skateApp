@@ -12,6 +12,7 @@ import Nav from './components/Nav';
 import ListShow from './components/ListShow';
 import SkateSpotShow from './components/SkateSpotShow';
 import NewSkateSpotCreate from './components/NewSkateSpotCreate';
+import SkateSpotEdit from './components/SkateSpotEdit';
 
 
 const RouterComponent = () => {
@@ -53,6 +54,7 @@ const RouterComponent = () => {
 					<Scene key="newSkateSpotCreate" component={NewSkateSpotCreate} title="New Create Skate Spot" />
 
 					<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
+					<Scene key="skateSpotEdit" component={SkateSpotEdit} title="New Edit Skate Spot"/>
 				</Scene>
 
 			</Scene>
@@ -60,7 +62,8 @@ const RouterComponent = () => {
 	);
 };
 
-					/*<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />*/
+					/*<Scene key="skateSpotShow" component={ListShow} title="Skate Spot Show" />
+					<Scene key="skateSpotEdit" component={SkateSpotEdit} onBack={() => Actions.main()} title="New Edit Skate Spot" leftTitle="Go"/>*/
 
 
 export default RouterComponent;
