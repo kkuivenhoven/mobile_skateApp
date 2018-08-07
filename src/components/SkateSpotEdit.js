@@ -34,7 +34,7 @@ class SkateSpotEdit extends Component {
 					geo_SW_lat = json.results[0].geometry.viewport.southwest.lat;
 					geo_SW_lng = json.results[0].geometry.viewport.southwest.lng;
 					//this.props.skateSpotSave({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
-					this.props.saveSkateSpot({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.employee.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
+					this.props.saveSkateSpot({ name, addr_num, street, city, zip, ab_state, country, uid: this.props.skate_spot.uid, lat: geo_lat, lng: geo_lng, NE_lat: geo_NE_lat, SW_lat: geo_SW_lat, NE_lng: geo_NE_lng, SW_lng: geo_SW_lng, userTime });
 			}).catch(error => console.warn(error));
 	}
 
@@ -89,21 +89,8 @@ class SkateSpotEdit extends Component {
 
 
 const mapStateToProps = (state) => {
-	console.log("mStP:: Object.keys(state): " + Object.keys(state));
-	console.log("mStP:: Object.values(state): " + Object.values(state));
-	console.log("mStP:: Object.keys(state.skateSpotsForm): " + Object.keys(state.skateSpotsForm));
-	console.log("mStP:: Object.values(state.skateSpotsForm): " + Object.values(state.skateSpotsForm));
-	/*console.log("mStP:: Object.keys(state.employeeForm): " + Object.keys(state.employeeForm));
-	console.log("mStP:: Object.values(state.employeeForm): " + Object.values(state.employeeForm));
-	console.log("mStP:: Object.keys(state.skateSpots): " + Object.keys(state.skateSpots));
-	console.log("mStP:: Object.values(state.skateSpots): " + Object.values(state.skateSpots));
-	console.log("mStP:: Object.keys(state.selectedId): " + Object.keys(state.selectedId));
-	console.log("mStP:: Object.values(state.selectedId): " + Object.values(state.selectedId));*/
-	//const { name, phone, shift } = state.employeeForm;
-	//const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime } = state.employeeForm;
-	//const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime } = state.skateSpots;
 	const { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime } = state.skateSpotsForm;
-	//return { name, phone, shift };
+
 	return { name, addr_num, street, city, zip, ab_state, country, NE_lat, SW_lat, userTime };
 };
 
