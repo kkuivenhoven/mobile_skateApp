@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text } from 'react-native';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Drawer, Scene, Router, Actions } from 'react-native-router-flux';
 import firebase from 'firebase';
 import LoginForm from './components/LoginForm';
 import EmployeeList from './components/EmployeeList';
@@ -30,26 +30,30 @@ const RouterComponent = () => {
 
 
 				<Scene key="auth">
-					<Scene key="login" component={LoginForm} title="Skate App4All" initial />
+					<Scene key="login" component={LoginForm} title="Skate App4All" initial hideDrawerButton />
 				</Scene>
 
 				<Scene key="main">
-					<Scene key="new_skateSpotGPSCreate" component={NewSkateSpotGPSCreate} title="New Create Skate Spot by GPS" />
-					<Scene key="new_skateSpotShow" component={SkateSpotShow} title="Skate Spot Show" />
-					<Scene key="newSkateSpotCreate" component={NewSkateSpotCreate} title="New Create Skate Spot" />
 					<Scene key="skateSpotEdit" component={SkateSpotEdit} title="New Edit Skate Spot"/>
+					<Scene key="new_skateSpotShow" component={SkateSpotShow} title="Skate Spot Show" />
 				</Scene>
 
-				<Scene key="tabbar"	tabs={true}
+				<Drawer 
+					hideNavBar
+					key="tabbar"	
+					contentComponent={MenuBG}
 					tabBarStyle={{backgroundColor:'#f4f3f5'}}
+					drawerWidth={250}
+					drawerPosition="left"
 				>
 
-					<Scene key="navigation" component={MenuBG} title="Menu" initial />
-					<Scene key="skateSpotList" component={SkateSpotList} title="Skate Spot List" icon={TabIcon} />
+						<Scene key="newSkateSpotCreate" component={NewSkateSpotCreate} title="New Create Skate Spot" />
+						<Scene key="new_skateSpotGPSCreate" component={NewSkateSpotGPSCreate} title="New Create Skate Spot by GPS" />
+						<Scene key="skateSpotList" component={SkateSpotList} title="Skate Spot List" icon={TabIcon} initial />
 
-					<Scene key="logout" component={LoginForm} title="Log out" icon={TabIcon} on={() => { firebase.auth().signOut();}}/>
+						<Scene key="logout" component={LoginForm} icon={TabIcon} on={() => { firebase.auth().signOut();}} hideDrawerButton />
 
-				</Scene>
+				</Drawer>
 
 			</Scene>
 		</Router>
@@ -57,6 +61,12 @@ const RouterComponent = () => {
 };
 
 					/*
+						<Scene key="navigation" component={MenuBG} title="Menu" initial />
+						<Scene 
+							key="tabbar"	
+							tabs={true}
+							tabBarStyle={{backgroundColor:'#f4f3f5'}}
+						>
 						<Scene key="skateSpotGPSCreate" component={SkateSpotGPSCreate} title="Create Skate Spot by GPS" />
 						<Scene key="employeeEdit" component={EmployeeEdit} title="Edit Skate Spot" />
 						<Scene key="skateSpotCreate" component={EmployeeCreate} title="Create Skate Spot" />

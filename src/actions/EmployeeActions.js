@@ -146,7 +146,8 @@ export const skateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state
 			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 			.then(() => {
 				dispatch({ type: SKATESPOT_GPS_CREATE });
-				Actions.main({ type: 'reset' });
+				//Actions.main({ type: 'reset' });
+				Actions.tabbar({ type: 'reset' });
 			});
 	};
 };
@@ -165,7 +166,8 @@ export const newSkateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_st
 					.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 					.then(() => {
 						dispatch({ type: NEW_SKATESPOT_GPS_CREATE });
-						Actions.main({ type: 'reset' });
+						//Actions.main({ type: 'reset' });
+						Actions.tabbar({ type: 'reset' });
 					});
 			});
 	};
