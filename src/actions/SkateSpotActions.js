@@ -46,7 +46,9 @@ export const deleteSkateSpot = ({ uid }) => {
     firebase.database().ref(`/skate_spots/${uid}`)
       .remove()
       .then(() => {
-        Actions.main({ type: 'reset' }); 
+        //Actions.main({ type: 'reset' }); 
+        //Actions.navigation({ type: 'reset' }); 
+        Actions.tabbar({ type: 'reset' }); 
       }); 
   }; 
 };
@@ -60,7 +62,9 @@ export const saveSkateSpot = ({ name, addr_num, street, city, zip, ab_state, cou
 			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 			.then(() => {
 				dispatch({ type: SAVE_SKATE_SPOT_SUCCESS });
-				Actions.main({ type: 'reset' });
+				//Actions.main({ type: 'reset' });
+				//Actions.navigation({ type: 'reset' });
+				Actions.tabbar({ type: 'reset' });
 			});
 	};
 };
