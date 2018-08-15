@@ -27,6 +27,11 @@ class SkateSpotShow extends Component {
 						{"	"} {skate_spot.addr_num} {skate_spot.street} {skate_spot.city} {"\n"}
 						{"	"} {skate_spot.zip} {skate_spot.country}
 					</Text>
+					<Button
+						onPress={() => {Actions.main({skate_spot});}}
+					>
+						ssView
+					</Button>
 				</View>
 			);
 		}

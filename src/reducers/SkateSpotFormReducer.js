@@ -24,6 +24,8 @@ const INITIAL_STATE = {
 };
 
 export default (state = INITIAL_STATE, action) => {
+	console.log("() ssformreducer.js **");
+	console.log("() action.type: " + action.type);
 	switch(action.type){
 		case SKATE_SPOT_UPDATE:
       return { ...state, [action.payload.prop]: action.payload.value };

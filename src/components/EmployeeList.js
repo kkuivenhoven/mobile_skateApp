@@ -130,7 +130,7 @@ class EmployeeList extends Component {
 
 const dim = Dimensions.get('screen');
 
-const styles =  {
+const styles = {
 	topGrid: {
 		//position: 'absolute',
 		borderRadius: 4,

@@ -5,7 +5,8 @@ import {
 	LOGIN_USER_FAIL,
 	LOGIN_USER,
 	SIGNUP_USER,
-	LOGOUT_USER
+	LOGOUT_USER,
+	GET_GPS_LOC
 } from '../actions/types';
 
 const INITIAL_STATE = {
@@ -19,6 +20,8 @@ const INITIAL_STATE = {
 export default (state = INITIAL_STATE, action) => {
 
 	switch (action.type) {
+		case GET_GPS_LOC:
+			return action.payload;
 		case LOGOUT_USER:
 			return state;
 		case EMAIL_CHANGED:

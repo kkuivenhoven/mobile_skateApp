@@ -15,6 +15,8 @@ import SkateSpotShow from './components/SkateSpotShow';
 import NewSkateSpotCreate from './components/NewSkateSpotCreate';
 import SkateSpotEdit from './components/SkateSpotEdit';
 import MenuBG from './components/MenuBG';
+import CheckIn from './components/CheckIn';
+import SSView from './components/SSView';
 
 
 const TabIcon = ({ selected, title }) => {
@@ -34,6 +36,7 @@ const RouterComponent = () => {
 				</Scene>
 
 				<Scene key="main">
+					<Scene key="ssView" component={SSView} title="SSView" />
 					<Scene key="skateSpotEdit" component={SkateSpotEdit} title="New Edit Skate Spot"/>
 					<Scene key="new_skateSpotShow" component={SkateSpotShow} title="Skate Spot Show" />
 				</Scene>
@@ -49,7 +52,9 @@ const RouterComponent = () => {
 
 						<Scene key="newSkateSpotCreate" component={NewSkateSpotCreate} title="New Create Skate Spot" />
 						<Scene key="new_skateSpotGPSCreate" component={NewSkateSpotGPSCreate} title="New Create Skate Spot by GPS" />
-						<Scene key="skateSpotList" component={SkateSpotList} title="Skate Spot List" icon={TabIcon} initial />
+						<Scene key="skateSpotList" component={SkateSpotList} title="Skate Spot List" icon={TabIcon} />
+
+						<Scene key="checkIn" component={CheckIn} icon={TabIcon} title="Check In" initial />
 
 						<Scene key="logout" component={LoginForm} icon={TabIcon} on={() => { firebase.auth().signOut();}} hideDrawerButton />
 

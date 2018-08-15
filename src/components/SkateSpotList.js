@@ -19,11 +19,6 @@ class SkateSpotList extends Component {
 
 
   componentWillReceiveProps(nextProps){
-		console.log("typeof(nextProps): " + typeof(nextProps));
-		console.log("Object.keys(nextProps): " + Object.keys(nextProps));
-		console.log("Object.values(nextProps): " + Object.values(nextProps));
-		console.log("Object.keys(nextProps.skate_spots): " + Object.keys(nextProps.skate_spots));
-		console.log("Object.values(nextProps.skate_spots): " + Object.values(nextProps.skate_spots));
     this.createDataSource(nextProps);
   }
 

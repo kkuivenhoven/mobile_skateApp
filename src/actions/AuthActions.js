@@ -7,7 +7,28 @@ import {
 	LOGIN_USER_FAIL,
 	LOGIN_USER,
 	SIGNUP_USER,
+	GET_GPS_LOC,
 }	from './types';
+
+
+export const getGPS = () => {
+	var data = []; 
+  navigator.geolocation.watchPosition(
+    (position) => {
+          data.push(position.coords.latitude);
+          data.push(position.coords.longitude);
+    },  
+  );  
+
+  console.log("data: " + data);
+  console.log("Object.keys(data): " + Object.keys(data));
+  console.log("Object.values(data): " + Object.values(data));
+	
+	return {
+		type: GET_GPS_LOC,
+		payload: data
+	};
+};
 
 
 export const emailChanged = (text) => {
@@ -60,12 +81,32 @@ const loginUserFail = (dispatch) => {
 
 
 const loginUserSuccess = (dispatch, user) => {
-	dispatch({
-		type: LOGIN_USER_SUCCESS,
-		payload: user
-	});
+/*	const { currentUser } = firebase.auth();
+
+	var lat;
+	var lng;
+  navigator.geolocation.watchPosition(
+    (position) => {
+          console.log("pos.crds.lat: " + position.coords.latitude);
+          console.log("pos.crds.lng: " + position.coords.longitude);
+					lat = position.coords.latitude;
+					lng = position.coords.longitude;
+    },  
+  ); 
+
+    firebase.database().ref(`/users/${currentUser.uid}/userDetails`)
+      .push({lat, lng})
+			.then(() => { 
+				console.log("success here");
+				dispatch({ type: LOGIN_USER_SUCCESS, payload: user });
+				Actions.tabbar();
+			});*/
 
 	//Actions.main();
 	//Actions.navigation();
+	dispatch({ 
+		type: LOGIN_USER_SUCCESS, 
+		payload: user 
+	});
 	Actions.tabbar();
 };

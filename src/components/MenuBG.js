@@ -42,6 +42,15 @@ class MenuBG extends Component {
 
         <CardSection>
           <Button
+            onPress={() => { Actions.checkIn(); }}
+						title="Check In"
+          > 
+            Check In
+          </Button>
+        </CardSection>
+
+        <CardSection>
+          <Button
             onPress={() => { Actions.logout(); }}
 						title="Log Out"
           > 
