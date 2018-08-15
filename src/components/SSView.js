@@ -5,6 +5,7 @@ import { HeadingText, Card, CardSection, Button } from './common';
 import { Actions } from 'react-native-router-flux';
 import MapView, { Marker, Polygon } from 'react-native-maps';
 import GeoFencing from 'react-native-geo-fencing';
+import _ from 'lodash';
 
 class SSView extends Component {
 
@@ -12,13 +13,6 @@ class SSView extends Component {
 		const { name, lat, lng } = this.props.skate_spot;
 		const { skate_spot, circleCoords } = this.props;
 
-		var i;
-		for(i=0; i < circleCoords.length; i++){
-			console.log("=====================================");
-			console.log("(((((( Object.keys(circleCoords[" + i + "]): " + Object.keys(circleCoords[i]));
-			console.log("{{{{{{ Object.values(circleCoords[" + i + "]): " + Object.values(circleCoords[i]));
-		}
-	
     return (
       <Card>
         <HeadingText
@@ -63,6 +57,9 @@ class SSView extends Component {
 								]}
                 fillColor='rgba(44,168,255,.50)'
               />  
+							<Marker
+								coordinate={{latitude: skate_spot.lat, longitude: skate_spot.lng}}
+							/>
             </MapView>
 				</View>
 
@@ -90,17 +87,15 @@ const styles = {
 
 const mapStateToProps = (state, ownProps) => {
 	console.log("------- SSView.js -------");
-	console.log("--- Object.keys(state): " + Object.keys(state));
-	console.log("--- Object.values(state): " + Object.values(state));
-	console.log("--- Object.keys(ownProps): " + Object.keys(ownProps));
-	console.log("--- Object.values(ownProps): " + Object.values(ownProps));
-	console.log("--- Object.keys(ownProps.skate_spot): " + Object.keys(ownProps.skate_spot));
-	console.log("--- Object.values(ownProps.skate_spot): " + Object.values(ownProps.skate_spot));
+
+	const tag = "Hola, bienvenidos";
 
 	const skate_spot = ownProps.skate_spot;
+	//const skate_spots = state.skateSpots;
 
 	//var r = (skate_spot.NE_lat - skate_spot.lat);
-	var r = (3/3959);
+	//var r = (3/3959);
+	var r = (10/3959);
 	console.log("r: " + r);
 
 	var circleCoords = []
@@ -108,25 +103,25 @@ const mapStateToProps = (state, ownProps) => {
 	var i;
 	var x, y;
 	for(i=0; i < angles.length; i++){
-		//x = skate_spot.lat + (r +  Math.cos(angles[i]));
-		//y = skate_spot.lng + (r +  Math.sin(angles[i]));
-		//x = skate_spot.lat + (r + Math.cos(angles[i]*(Math.PI/180)));
-		//y = skate_spot.lng + (r + Math.sin(angles[i]*(Math.PI/180)));
 		x = skate_spot.lat + (r + r*Math.cos(angles[i]*(Math.PI/180)));
 		y = skate_spot.lng + (r + r*Math.sin(angles[i]*(Math.PI/180)));
 		circleCoords.push({latitude: x, longitude: y});
 	}
 
-	console.log(">> Object.keys(circleCoords): " + Object.keys(circleCoords));
-	console.log(">> Object.values(circleCoords): " + Object.values(circleCoords));
+	const skate_spots = _.reduce((state.skateSpots), (n) => {
+		/*console.log("=-=-= Object.keys(n): " + Object.keys(n));
+		console.log("=-=-= Object.values(n): " + Object.values(n));
+		return n;*/
+		/*const point = {
+			lat: n.lat,
+			lng: n.lng,
+		};*/
 
-	for(i=0; i < angles.length; i++){
-		console.log("--------------------------------------------");
-		console.log("%%>> Object.keys(circleCoords[" + i + "]): " + Object.keys(circleCoords[i]));
-		console.log("%%>> Object.values(circleCoords[" + i + "]): " + Object.values(circleCoords[i]));
-	}
+		/*GeoFencing.containsLocation(point, circleCoords)
+			.then(() => console.log("point is within polygon"))
+			.catch(() => console.log("point is NOT within polygon"))*/
+	});
 
-	const tag = "Hola, bienvenidos";
 
 	return { skate_spot, tag, circleCoords };
 

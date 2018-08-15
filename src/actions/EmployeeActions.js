@@ -50,7 +50,8 @@ export const selectLibrary = (libraryId) => {
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees/${libraryId}`)
+		//firebase.database().ref(`/users/${currentUser.uid}/employees/${libraryId}`)
+		firebase.database().ref(`/users/${currentUser.uid}/skate_spots/${libraryId}`)
 			.on('value', snapshot => {
 				dispatch({ type: SELECT_LIBRARY, payload: [snapshot.key, snapshot.val()] });
 			})
@@ -70,7 +71,8 @@ export const skateSpotCreate = ({ name, addr_num, street, city, zip, ab_state, c
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		//firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		firebase.database().ref(`/users/${currentUser.uid}/skate_spots`)
 			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_CREATE });
@@ -86,7 +88,8 @@ export const skateSpotsFetch = () => {
 		//firebase.database().ref(`/users/${currentUser.uid}/employees`)
 		  //.once('value', snapshot => {
 	return (dispatch) => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		//firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		firebase.database().ref(`/users/${currentUser.uid}/skate_spots`)
 		  .on('value', snapshot => {
 				dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
 			});
@@ -98,7 +101,8 @@ export const saveTime = ({ userTime, uid }) => {
 	const { currentUser } = firebase.auth();
 	
 	return (dispatch) => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+		//firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+		firebase.database().ref(`/users/${currentUser.uid}/skate_spots/${uid}`)
 			.update({ userTime })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_TIME });
@@ -112,7 +116,8 @@ export const skateSpotSave = ({ name, addr_num, street, city, zip, ab_state, cou
 	const { currentUser } = firebase.auth();
 
 	return (dispatch) => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+		//firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+		firebase.database().ref(`/users/${currentUser.uid}/skate_spots/${uid}`)
 			.set({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 			.then(() => {
 				dispatch({ type: EMPLOYEE_SAVE_SUCCESS });
@@ -127,7 +132,8 @@ export const skateSpotDelete = ({ uid }) => {
 	const { currentUser } = firebase.auth();
 
 	return () => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+		//firebase.database().ref(`/users/${currentUser.uid}/employees/${uid}`)
+		firebase.database().ref(`/users/${currentUser.uid}/skate_spots/${uid}`)
 			.remove()
 			.then(() => {
 				Actions.main({ type: 'reset' });
@@ -142,7 +148,8 @@ export const skateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_state
 	console.log(name, addr_num, street, city, zip, ab_state, country, lat, lng);
 
 	return (dispatch) => {
-		firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		//firebase.database().ref(`/users/${currentUser.uid}/employees`)
+		firebase.database().ref(`/users/${currentUser.uid}/skate_spots`)
 			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 			.then(() => {
 				dispatch({ type: SKATESPOT_GPS_CREATE });
@@ -162,7 +169,8 @@ export const newSkateSpotGPSCreate = ({ name, addr_num, street, city, zip, ab_st
 		firebase.database().ref(`/skate_spots`)
 			.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime, user_id, checkedIn_users })
 			.then(() => {
-				firebase.database().ref(`/users/${currentUser.uid}/employees`)
+				//firebase.database().ref(`/users/${currentUser.uid}/employees`)
+				firebase.database().ref(`/users/${currentUser.uid}/skate_spots`)
 					.push({ name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime })
 					.then(() => {
 						dispatch({ type: NEW_SKATESPOT_GPS_CREATE });
