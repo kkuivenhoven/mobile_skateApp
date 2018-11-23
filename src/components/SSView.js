@@ -11,6 +11,33 @@ class SSView extends Component {
 
 	checkLocation(){
 		console.log("INSIDE CHECK LOCATION FUNCTION");
+    const polygon = [ 
+      { lat: this.props.skate_spot.NE_lat, lng: this.props.skate_spot.NE_lng },
+      { lat: this.props.skate_spot.SW_lat, lng: this.props.skate_spot.NE_lng },
+      { lat: this.props.skate_spot.SW_lat, lng: this.props.skate_spot.SW_lng },
+      { lat: this.props.skate_spot.NE_lat, lng: this.props.skate_spot.SW_lng },
+      { lat: this.props.skate_spot.NE_lat, lng: this.props.skate_spot.NE_lng },
+    ];  
+		console.log("this.props.skate_spot.NE_lat: " + this.props.skate_spot.NE_lat);
+		console.log("this.props.skate_spot.NE_lng: " + this.props.skate_spot.NE_lng);
+		var userLocation = [];
+
+		navigator.geolocation.getCurrentPosition(
+      (position) => {
+        this.setState({
+          userLat: position.coords.latitude,
+          userLng: position.coords.longitude,
+          error: null,
+        }, () => {
+          userLocation.push({lat: this.state.userLat, lng: this.state.userLng});
+          GeoFencing.containsLocation(userLocation[0], polygon)
+            .then(() => { console.log("contains location!"); this.setState({inFence: true,});})
+            .catch(() => {this.setState({inFence: false,});})
+        });
+      },
+      (error) => console.log("error: " + error),
+      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
+			);
 	}
 
   render(){
