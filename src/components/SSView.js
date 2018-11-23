@@ -14,6 +14,7 @@ class SSView extends Component {
 	}
 
   render(){
+		const dim = Dimensions.get('screen');
 		const { name, lat, lng, addr_num, city, ab_state, country, street, zip } = this.props.skate_spot;
 		const { skate_spot, circleCoords, two_circleCoords, three_circleCoords, four_circleCoords, five_circleCoords } = this.props;
 
@@ -27,25 +28,23 @@ class SSView extends Component {
 		}
 
     return (
-      <Card>
+      <View>
         <HeadingText
           title={name}
         />  
 
-				<CardSection>
-				<View style={styles.infoBox}>
+				<View style={{ width: dim.width, height: 100 }}>
 					<Text>
-						{addr_num} {street},
+						{addr_num} {street} {"\n"}
 						{city}, {ab_state} {zip}
 					</Text>
 					<Button onPress={() => this.checkLocation()}>
 						Check Location
 					</Button>
 				</View>
-				</CardSection>
 
-				<CardSection>
-            <MapView
+				<View style={{ width: dim.width, height: 100 }}>
+	            <MapView
               style={ styles.map }
               zoomEnabled={true}
               showsUserLocation={true}
@@ -56,8 +55,8 @@ class SSView extends Component {
                 longitudeDelta: 0.0421,
               }}  
             >   
-						<Polygon
-							coordinates={[
+            <Polygon
+              coordinates={[
                   { latitude: five_circleCoords[0].latitude, longitude: five_circleCoords[0].longitude },
                   { latitude: five_circleCoords[1].latitude, longitude: five_circleCoords[1].longitude },
                   { latitude: five_circleCoords[2].latitude, longitude: five_circleCoords[2].longitude },
@@ -73,16 +72,15 @@ class SSView extends Component {
                   { latitude: five_circleCoords[12].latitude, longitude: five_circleCoords[12].longitude },
                   { latitude: five_circleCoords[13].latitude, longitude: five_circleCoords[13].longitude },
                   { latitude: five_circleCoords[0].latitude, longitude: five_circleCoords[0].longitude },
-								]}
+                ]}  
                 fillColor='rgba(255,44,44,.25)'
               />  
-							<Marker
-								coordinate={{latitude: skate_spot.lat, longitude: skate_spot.lng}}
-							/>
+              <Marker
+                coordinate={{latitude: skate_spot.lat, longitude: skate_spot.lng}}
+              />  
             </MapView>
-				</CardSection>
-
-      </Card>
+				</View>
+      </View>
     );  
   }
 }
