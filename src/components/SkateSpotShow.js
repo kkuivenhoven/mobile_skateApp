@@ -30,7 +30,7 @@ class SkateSpotShow extends Component {
 					<Button
 						onPress={() => {Actions.main({skate_spot});}}
 					>
-						ssView
+						View Skate Spot
 					</Button>
 				</View>
 			);

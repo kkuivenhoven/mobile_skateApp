@@ -36,7 +36,7 @@ const RouterComponent = () => {
 				</Scene>
 
 				<Scene key="main">
-					<Scene key="ssView" component={SSView} title="SSView" />
+					<Scene key="ssView" component={SSView} title="Skate Spot View" />
 					<Scene key="skateSpotEdit" component={SkateSpotEdit} title="New Edit Skate Spot"/>
 					<Scene key="new_skateSpotShow" component={SkateSpotShow} title="Skate Spot Show" />
 				</Scene>

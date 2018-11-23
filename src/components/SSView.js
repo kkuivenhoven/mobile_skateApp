@@ -10,8 +10,17 @@ import _ from 'lodash';
 class SSView extends Component {
 
   render(){
-		const { name, lat, lng } = this.props.skate_spot;
-		const { skate_spot, circleCoords } = this.props;
+		const { name, lat, lng, addr_num, city, ab_state, country, street, zip } = this.props.skate_spot;
+		const { skate_spot, circleCoords, two_circleCoords, three_circleCoords, four_circleCoords, five_circleCoords } = this.props;
+
+		var i;
+		console.log("Object.keys(this.props): " + Object.keys(this.props));
+		console.log("Object.keys(this.props.skate_spot): " + Object.keys(this.props.skate_spot));
+		for(i=0; i < circleCoords.length; i++){
+			/*console.log("________________________________________");
+			console.log("circleCoords[" + i + "].latitude: " + circleCoords[i].latitude);
+			console.log("circleCoords[" + i + "].longitude: " + circleCoords[i].longitude);*/
+		}
 
     return (
       <Card>
@@ -21,6 +30,8 @@ class SSView extends Component {
 
 				<View>
 					<Text>
+						{addr_num} {street}{"\n"}
+						{city}, {ab_state} {zip}{"\n"}
 						{this.props.tag}
 					</Text>
 				</View>
@@ -56,6 +67,66 @@ class SSView extends Component {
                   { latitude: circleCoords[0].latitude, longitude: circleCoords[0].longitude },
 								]}
                 fillColor='rgba(44,168,255,.50)'
+              />  
+              <Polygon
+                coordinates={[
+                  { latitude: three_circleCoords[0].latitude, longitude: three_circleCoords[0].longitude },
+                  { latitude: three_circleCoords[1].latitude, longitude: three_circleCoords[1].longitude },
+                  { latitude: three_circleCoords[2].latitude, longitude: three_circleCoords[2].longitude },
+                  { latitude: three_circleCoords[3].latitude, longitude: three_circleCoords[3].longitude },
+                  { latitude: three_circleCoords[4].latitude, longitude: three_circleCoords[4].longitude },
+                  { latitude: three_circleCoords[5].latitude, longitude: three_circleCoords[5].longitude },
+                  { latitude: three_circleCoords[6].latitude, longitude: three_circleCoords[6].longitude },
+                  { latitude: three_circleCoords[7].latitude, longitude: three_circleCoords[7].longitude },
+                  { latitude: three_circleCoords[8].latitude, longitude: three_circleCoords[8].longitude },
+                  { latitude: three_circleCoords[9].latitude, longitude: three_circleCoords[9].longitude },
+                  { latitude: three_circleCoords[10].latitude, longitude: three_circleCoords[10].longitude },
+                  { latitude: three_circleCoords[11].latitude, longitude: three_circleCoords[11].longitude },
+                  { latitude: three_circleCoords[12].latitude, longitude: three_circleCoords[12].longitude },
+                  { latitude: three_circleCoords[13].latitude, longitude: three_circleCoords[13].longitude },
+                  { latitude: three_circleCoords[0].latitude, longitude: three_circleCoords[0].longitude },
+								]}
+                fillColor='rgba(205,44,255,.75)'
+              />  
+              <Polygon
+                coordinates={[
+                  { latitude: four_circleCoords[0].latitude, longitude: four_circleCoords[0].longitude },
+                  { latitude: four_circleCoords[1].latitude, longitude: four_circleCoords[1].longitude },
+                  { latitude: four_circleCoords[2].latitude, longitude: four_circleCoords[2].longitude },
+                  { latitude: four_circleCoords[3].latitude, longitude: four_circleCoords[3].longitude },
+                  { latitude: four_circleCoords[4].latitude, longitude: four_circleCoords[4].longitude },
+                  { latitude: four_circleCoords[5].latitude, longitude: four_circleCoords[5].longitude },
+                  { latitude: four_circleCoords[6].latitude, longitude: four_circleCoords[6].longitude },
+                  { latitude: four_circleCoords[7].latitude, longitude: four_circleCoords[7].longitude },
+                  { latitude: four_circleCoords[8].latitude, longitude: four_circleCoords[8].longitude },
+                  { latitude: four_circleCoords[9].latitude, longitude: four_circleCoords[9].longitude },
+                  { latitude: four_circleCoords[10].latitude, longitude: four_circleCoords[10].longitude },
+                  { latitude: four_circleCoords[11].latitude, longitude: four_circleCoords[11].longitude },
+                  { latitude: four_circleCoords[12].latitude, longitude: four_circleCoords[12].longitude },
+                  { latitude: four_circleCoords[13].latitude, longitude: four_circleCoords[13].longitude },
+                  { latitude: four_circleCoords[0].latitude, longitude: four_circleCoords[0].longitude },
+								]}
+                fillColor='rgba(44,255,198,.60)'
+              />  
+              <Polygon
+                coordinates={[
+                  { latitude: five_circleCoords[0].latitude, longitude: five_circleCoords[0].longitude },
+                  { latitude: five_circleCoords[1].latitude, longitude: five_circleCoords[1].longitude },
+                  { latitude: five_circleCoords[2].latitude, longitude: five_circleCoords[2].longitude },
+                  { latitude: five_circleCoords[3].latitude, longitude: five_circleCoords[3].longitude },
+                  { latitude: five_circleCoords[4].latitude, longitude: five_circleCoords[4].longitude },
+                  { latitude: five_circleCoords[5].latitude, longitude: five_circleCoords[5].longitude },
+                  { latitude: five_circleCoords[6].latitude, longitude: five_circleCoords[6].longitude },
+                  { latitude: five_circleCoords[7].latitude, longitude: five_circleCoords[7].longitude },
+                  { latitude: five_circleCoords[8].latitude, longitude: five_circleCoords[8].longitude },
+                  { latitude: five_circleCoords[9].latitude, longitude: five_circleCoords[9].longitude },
+                  { latitude: five_circleCoords[10].latitude, longitude: five_circleCoords[10].longitude },
+                  { latitude: five_circleCoords[11].latitude, longitude: five_circleCoords[11].longitude },
+                  { latitude: five_circleCoords[12].latitude, longitude: five_circleCoords[12].longitude },
+                  { latitude: five_circleCoords[13].latitude, longitude: five_circleCoords[13].longitude },
+                  { latitude: five_circleCoords[0].latitude, longitude: five_circleCoords[0].longitude },
+								]}
+                fillColor='rgba(255,44,44,.25)'
               />  
 							<Marker
 								coordinate={{latitude: skate_spot.lat, longitude: skate_spot.lng}}
@@ -94,8 +165,8 @@ const mapStateToProps = (state, ownProps) => {
 	//const skate_spots = state.skateSpots;
 
 	//var r = (skate_spot.NE_lat - skate_spot.lat);
-	//var r = (3/3959);
-	var r = (10/3959);
+	var r = (3/3959);
+	//var r = (10/3959);
 	console.log("r: " + r);
 
 	var circleCoords = []
@@ -108,8 +179,36 @@ const mapStateToProps = (state, ownProps) => {
 		circleCoords.push({latitude: x, longitude: y});
 	}
 
-	const skate_spots = _.reduce((state.skateSpots), (n) => {
-		/*console.log("=-=-= Object.keys(n): " + Object.keys(n));
+	var two_circleCoords = []
+	for(i=0; i < angles.length; i++){
+		x = skate_spot.lat + (r + Math.cos(angles[i]*(Math.PI/180)));
+		y = skate_spot.lng + (r + Math.sin(angles[i]*(Math.PI/180)));
+		two_circleCoords.push({latitude: x, longitude: y});
+	}
+
+	var three_circleCoords = []
+	for(i=0; i < angles.length; i++){
+		x = skate_spot.lat + (r + r*Math.cos(angles[i]));
+		y = skate_spot.lng + (r + r*Math.sin(angles[i]));
+		three_circleCoords.push({latitude: x, longitude: y});
+	}
+
+	var four_circleCoords = []
+	for(i=0; i < angles.length; i++){
+		x = skate_spot.lat + (r + Math.cos(angles[i]));
+		y = skate_spot.lng + (r + Math.sin(angles[i]));
+		four_circleCoords.push({latitude: x, longitude: y});
+	}
+
+	var five_circleCoords = []
+	for(i=0; i < angles.length; i++){
+		x = skate_spot.lat + r*Math.cos(angles[i]*(Math.PI/180));
+		y = skate_spot.lng + r*Math.sin(angles[i]*(Math.PI/180));
+		five_circleCoords.push({latitude: x, longitude: y});
+	}
+
+	/*const skate_spots = _.reduce((state.skateSpots), (n) => {
+		console.log("=-=-= Object.keys(n): " + Object.keys(n));
 		console.log("=-=-= Object.values(n): " + Object.values(n));
 		return n;*/
 		/*const point = {
@@ -120,10 +219,10 @@ const mapStateToProps = (state, ownProps) => {
 		/*GeoFencing.containsLocation(point, circleCoords)
 			.then(() => console.log("point is within polygon"))
 			.catch(() => console.log("point is NOT within polygon"))*/
-	});
+	/*});*/
 
 
-	return { skate_spot, tag, circleCoords };
+	return { skate_spot, tag, circleCoords, two_circleCoords, three_circleCoords, four_circleCoords, five_circleCoords };
 
 };
 
