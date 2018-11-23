@@ -9,6 +9,10 @@ import _ from 'lodash';
 
 class SSView extends Component {
 
+	checkLocation(){
+		console.log("INSIDE CHECK LOCATION FUNCTION");
+	}
+
   render(){
 		const { name, lat, lng, addr_num, city, ab_state, country, street, zip } = this.props.skate_spot;
 		const { skate_spot, circleCoords, two_circleCoords, three_circleCoords, four_circleCoords, five_circleCoords } = this.props;
@@ -28,14 +32,19 @@ class SSView extends Component {
           title={name}
         />  
 
-				<View>
+				<CardSection>
+				<View style={styles.infoBox}>
 					<Text>
-						{addr_num} {street}{"\n"}
+						{addr_num} {street},
 						{city}, {ab_state} {zip}
 					</Text>
+					<Button onPress={() => this.checkLocation()}>
+						Check Location
+					</Button>
 				</View>
+				</CardSection>
 
-				<View>
+				<CardSection>
             <MapView
               style={ styles.map }
               zoomEnabled={true}
@@ -47,68 +56,8 @@ class SSView extends Component {
                 longitudeDelta: 0.0421,
               }}  
             >   
-              <Polygon
-                coordinates={[
-                  { latitude: circleCoords[0].latitude, longitude: circleCoords[0].longitude },
-                  { latitude: circleCoords[1].latitude, longitude: circleCoords[1].longitude },
-                  { latitude: circleCoords[2].latitude, longitude: circleCoords[2].longitude },
-                  { latitude: circleCoords[3].latitude, longitude: circleCoords[3].longitude },
-                  { latitude: circleCoords[4].latitude, longitude: circleCoords[4].longitude },
-                  { latitude: circleCoords[5].latitude, longitude: circleCoords[5].longitude },
-                  { latitude: circleCoords[6].latitude, longitude: circleCoords[6].longitude },
-                  { latitude: circleCoords[7].latitude, longitude: circleCoords[7].longitude },
-                  { latitude: circleCoords[8].latitude, longitude: circleCoords[8].longitude },
-                  { latitude: circleCoords[9].latitude, longitude: circleCoords[9].longitude },
-                  { latitude: circleCoords[10].latitude, longitude: circleCoords[10].longitude },
-                  { latitude: circleCoords[11].latitude, longitude: circleCoords[11].longitude },
-                  { latitude: circleCoords[12].latitude, longitude: circleCoords[12].longitude },
-                  { latitude: circleCoords[13].latitude, longitude: circleCoords[13].longitude },
-                  { latitude: circleCoords[0].latitude, longitude: circleCoords[0].longitude },
-								]}
-                fillColor='rgba(44,168,255,.50)'
-              />  
-              <Polygon
-                coordinates={[
-                  { latitude: three_circleCoords[0].latitude, longitude: three_circleCoords[0].longitude },
-                  { latitude: three_circleCoords[1].latitude, longitude: three_circleCoords[1].longitude },
-                  { latitude: three_circleCoords[2].latitude, longitude: three_circleCoords[2].longitude },
-                  { latitude: three_circleCoords[3].latitude, longitude: three_circleCoords[3].longitude },
-                  { latitude: three_circleCoords[4].latitude, longitude: three_circleCoords[4].longitude },
-                  { latitude: three_circleCoords[5].latitude, longitude: three_circleCoords[5].longitude },
-                  { latitude: three_circleCoords[6].latitude, longitude: three_circleCoords[6].longitude },
-                  { latitude: three_circleCoords[7].latitude, longitude: three_circleCoords[7].longitude },
-                  { latitude: three_circleCoords[8].latitude, longitude: three_circleCoords[8].longitude },
-                  { latitude: three_circleCoords[9].latitude, longitude: three_circleCoords[9].longitude },
-                  { latitude: three_circleCoords[10].latitude, longitude: three_circleCoords[10].longitude },
-                  { latitude: three_circleCoords[11].latitude, longitude: three_circleCoords[11].longitude },
-                  { latitude: three_circleCoords[12].latitude, longitude: three_circleCoords[12].longitude },
-                  { latitude: three_circleCoords[13].latitude, longitude: three_circleCoords[13].longitude },
-                  { latitude: three_circleCoords[0].latitude, longitude: three_circleCoords[0].longitude },
-								]}
-                fillColor='rgba(205,44,255,.75)'
-              />  
-              <Polygon
-                coordinates={[
-                  { latitude: four_circleCoords[0].latitude, longitude: four_circleCoords[0].longitude },
-                  { latitude: four_circleCoords[1].latitude, longitude: four_circleCoords[1].longitude },
-                  { latitude: four_circleCoords[2].latitude, longitude: four_circleCoords[2].longitude },
-                  { latitude: four_circleCoords[3].latitude, longitude: four_circleCoords[3].longitude },
-                  { latitude: four_circleCoords[4].latitude, longitude: four_circleCoords[4].longitude },
-                  { latitude: four_circleCoords[5].latitude, longitude: four_circleCoords[5].longitude },
-                  { latitude: four_circleCoords[6].latitude, longitude: four_circleCoords[6].longitude },
-                  { latitude: four_circleCoords[7].latitude, longitude: four_circleCoords[7].longitude },
-                  { latitude: four_circleCoords[8].latitude, longitude: four_circleCoords[8].longitude },
-                  { latitude: four_circleCoords[9].latitude, longitude: four_circleCoords[9].longitude },
-                  { latitude: four_circleCoords[10].latitude, longitude: four_circleCoords[10].longitude },
-                  { latitude: four_circleCoords[11].latitude, longitude: four_circleCoords[11].longitude },
-                  { latitude: four_circleCoords[12].latitude, longitude: four_circleCoords[12].longitude },
-                  { latitude: four_circleCoords[13].latitude, longitude: four_circleCoords[13].longitude },
-                  { latitude: four_circleCoords[0].latitude, longitude: four_circleCoords[0].longitude },
-								]}
-                fillColor='rgba(44,255,198,.60)'
-              />  
-              <Polygon
-                coordinates={[
+						<Polygon
+							coordinates={[
                   { latitude: five_circleCoords[0].latitude, longitude: five_circleCoords[0].longitude },
                   { latitude: five_circleCoords[1].latitude, longitude: five_circleCoords[1].longitude },
                   { latitude: five_circleCoords[2].latitude, longitude: five_circleCoords[2].longitude },
@@ -131,7 +80,7 @@ class SSView extends Component {
 								coordinate={{latitude: skate_spot.lat, longitude: skate_spot.lng}}
 							/>
             </MapView>
-				</View>
+				</CardSection>
 
       </Card>
     );  
@@ -141,6 +90,8 @@ class SSView extends Component {
 const dim = Dimensions.get('screen');
 
 const styles = {
+	infoBox: {
+	},
   map: {
     position: 'absolute',
     borderRadius: 4,
