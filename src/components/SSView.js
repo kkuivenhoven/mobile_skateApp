@@ -34,7 +34,12 @@ class SSView extends Component {
         />  
 
 				<View style={{ width: dim.width, height: 100 }}>
-					<Text>
+					<Text
+						style={{
+							fontSize: 20,
+							textAlign: 'center',
+						}}
+					>
 						{addr_num} {street} {"\n"}
 						{city}, {ab_state} {zip}
 					</Text>
