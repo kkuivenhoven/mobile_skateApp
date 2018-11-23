@@ -31,8 +31,7 @@ class SSView extends Component {
 				<View>
 					<Text>
 						{addr_num} {street}{"\n"}
-						{city}, {ab_state} {zip}{"\n"}
-						{this.props.tag}
+						{city}, {ab_state} {zip}
 					</Text>
 				</View>
 

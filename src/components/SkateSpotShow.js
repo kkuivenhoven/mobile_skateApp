@@ -24,8 +24,8 @@ class SkateSpotShow extends Component {
 			return (
 				<View>
 					<Text>
-						{"	"} {skate_spot.addr_num} {skate_spot.street} {skate_spot.city} {"\n"}
-						{"	"} {skate_spot.zip} {skate_spot.country}
+						{"	"} {skate_spot.addr_num} {skate_spot.street} {"\n"}
+						{"	"} {skate_spot.city}, {skate_spot.ab_state} {skate_spot.zip} 
 					</Text>
 					<Button
 						onPress={() => {Actions.main({skate_spot});}}
