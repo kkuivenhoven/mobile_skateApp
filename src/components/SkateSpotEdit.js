@@ -22,6 +22,7 @@ class SkateSpotEdit extends Component {
 	onButtonPress(){
 		//const { name, phone, shift } = this.props;
 		//const { name, addr_num, street, city, zip, ab_state, country, lat, lng } = this.props;
+		console.log("SKATE SPOT EDIT.JS");
 		const { name, addr_num, street, city, zip, ab_state, country, lat, lng, NE_lat, SW_lat, NE_lng, SW_lng, userTime } = this.props;
 		//this.props.employeeSave({ name, phone, shift, uid: this.props.employee.uid });
       var addr = addr_num + street + ", " + city + ", " + ab_state + ", " + zip;

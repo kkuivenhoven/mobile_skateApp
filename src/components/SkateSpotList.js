@@ -50,6 +50,8 @@ class SkateSpotList extends Component {
 
 
 const mapStateToProps = state => {
+	console.log("<> SSL.js: Object.keys(state): " + Object.keys(state));
+	console.log("<> SSL.js: Object.values(state): " + Object.values(state));
 	const skate_spots = _.map((state.skateSpots), (val, uid) => {
 		return { ...val, uid };
 	});

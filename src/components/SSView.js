@@ -9,6 +9,15 @@ import _ from 'lodash';
 
 class SSView extends Component {
 
+	componentDidMount() {
+		console.log("in COMPONENTdidMount()");
+		console.log("Object.keys(this): " + Object.keys(this));
+		console.log("Object.keys(this.props): " + Object.keys(this.props));
+		/*if(this.state.inFence == true){
+			console.log("this.state.inFence == true!!!!!!!!!");
+		}*/
+	}
+
 	checkLocation(){
 		console.log("INSIDE CHECK LOCATION FUNCTION");
     const polygon = [ 
@@ -31,14 +40,22 @@ class SSView extends Component {
         }, () => {
           userLocation.push({lat: this.state.userLat, lng: this.state.userLng});
           GeoFencing.containsLocation(userLocation[0], polygon)
-            .then(() => { console.log("contains location!"); this.setState({inFence: true,});})
+            .then(() => { 
+							console.log("contains location!"); 
+							this.setState({inFence: true,});
+						})
             .catch(() => {this.setState({inFence: false,});})
         });
       },
       (error) => console.log("error: " + error),
       { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000, distanceFilter: 10 },
-			);
+		);
 	}
+
+	testing(){
+		console.log("inside testing()");
+		return <h1>Hello</h1>;
+	}	
 
   render(){
 		const dim = Dimensions.get('screen');
@@ -46,8 +63,8 @@ class SSView extends Component {
 		const { skate_spot, circleCoords, two_circleCoords, three_circleCoords, four_circleCoords, five_circleCoords } = this.props;
 
 		var i;
-		console.log("Object.keys(this.props): " + Object.keys(this.props));
-		console.log("Object.keys(this.props.skate_spot): " + Object.keys(this.props.skate_spot));
+		console.log("render(): Object.keys(this.props): " + Object.keys(this.props));
+		console.log("render(): Object.keys(this.props.skate_spot): " + Object.keys(this.props.skate_spot));
 		for(i=0; i < circleCoords.length; i++){
 			/*console.log("________________________________________");
 			console.log("circleCoords[" + i + "].latitude: " + circleCoords[i].latitude);
@@ -60,7 +77,7 @@ class SSView extends Component {
           title={name}
         />  
 
-				<View style={{ width: dim.width, height: 100 }}>
+				<View style={{ width: dim.width, height: 150 }}>
 					<Text
 						style={{
 							fontSize: 20,
@@ -68,8 +85,14 @@ class SSView extends Component {
 						}}
 					>
 						{addr_num} {street} {"\n"}
-						{city}, {ab_state} {zip}
+						{city}, {ab_state} {zip} 
 					</Text>
+					<Text inFence={false}>
+						Alright
+					</Text>
+					<Button onPress={() => this.testing()}>
+						Testing
+					</Button>
 					<Button onPress={() => this.checkLocation()}>
 						Check Location
 					</Button>
@@ -138,8 +161,8 @@ const styles = {
 
 const mapStateToProps = (state, ownProps) => {
 	console.log("------- SSView.js -------");
-
-	const tag = "Hola, bienvenidos";
+	console.log("---- Object.keys(state): " + Object.keys(state));
+	console.log("---- Object.values(state): " + Object.values(state));
 
 	const skate_spot = ownProps.skate_spot;
 	//const skate_spots = state.skateSpots;
@@ -200,9 +223,10 @@ const mapStateToProps = (state, ownProps) => {
 			.then(() => console.log("point is within polygon"))
 			.catch(() => console.log("point is NOT within polygon"))*/
 	/*});*/
+	var lat = skate_spot.lat;
+	var lng = skate_spot.lng;
 
-
-	return { skate_spot, tag, circleCoords, two_circleCoords, three_circleCoords, four_circleCoords, five_circleCoords };
+	return { lat, lng, skate_spot, circleCoords, two_circleCoords, three_circleCoords, four_circleCoords, five_circleCoords };
 
 };
 

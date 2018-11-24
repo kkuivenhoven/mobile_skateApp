@@ -9,6 +9,8 @@ class SkateSpotForm extends Component {
 	render(){
 		//console.log("Object.keys(this.props): " + Object.keys(this.props));
 		//console.log("Object.values(this.props): " + Object.values(this.props));
+		console.log(" -> SSF.js render() ");
+		console.log(" -> Object.keys(this.props): " + Object.keys(this.props));
 
 		return (
 			<View>
@@ -101,9 +103,10 @@ const mapStateToProps = (state) => {
 	console.log("SSF.js Object.keys(state.skateSpots): " + Object.keys(state.skateSpots));
 	console.log("SSF.js Object.values(state.skateSpots): " + Object.values(state.skateSpots));
 	//const { name, addr_num, street, city, zip, ab_state, country } = state.employeeForm;
-	const { name, addr_num, street, city, zip, ab_state, country } = state.skateSpotsForm;
+	const { lat, lng, name, addr_num, street, city, zip, ab_state, country } = state.skateSpotsForm;
+	console.log("SSF.js after extraction of varables");
 
-	return { name, addr_num, street, city, zip, ab_state, country };
+	return { lat, lng, name, addr_num, street, city, zip, ab_state, country };
 };
 
 
